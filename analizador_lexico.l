@@ -36,49 +36,86 @@ LETTER   [a-zA-Z]
 ID       ({LETTER}|_)({LETTER}|{DIGIT}|_)*
 INTEGER  [+-]?{DIGIT}+
 DECIMAL  {DIGIT}+\.{DIGIT}*|{DIGIT}*\.{DIGIT}+
+SCIENTIFIC  ({INTEGER}|{DECIMAL})[eE][+-]?{DIGIT}+
 
 %%
 
 #.*$            { /* Ignorar comentarios */ }
 
 "and"           { printf("AND "); }
+"as"            { printf("AS "); }
+"assert"        { printf("ASSERT "); }
 "break"         { printf("BREAK "); }
+"class"         { printf("CLASS "); }
 "continue"      { printf("CONTINUE "); }
 "def"           { printf("DEF "); }
+"del"           { printf("DEL "); }
 "elif"          { printf("ELIF "); }
 "else"          { printf("ELSE "); }
+"except"        { printf("EXCEPT "); }
+"exec"          { printf("EXEC "); }
+"finally"       { printf("FINALLY "); }
 "for"           { printf("FOR "); }
+"from"          { printf("FROM "); }
+"global"        { printf("GLOBAL "); }
 "if"            { printf("IF "); }
 "import"        { printf("IMPORT "); }
 "in"            { printf("IN "); }
 "is"            { printf("IS "); }
+"lambda"        { printf("LAMBDA "); }
 "not"           { printf("NOT "); }
 "or"            { printf("OR "); }
 "pass"          { printf("PASS "); }
 "print"         { printf("PRINT "); }
+"raise"         { printf("RAISE "); }
 "return"        { printf("RETURN "); }
+"try"           { printf("TRY "); }
 "while"         { printf("WHILE "); }
+"with"          { printf("WITH "); }
+"yield"         { printf("YIELD "); }
+
 "True"          { printf("TRUE "); }
 "False"         { printf("FALSE "); }
+"None"          { printf("NONE "); }
 
-({INTEGER}|{DECIMAL})(j|J)    { printf("imaginario=%s ", yytext); }
-{INTEGER}(L|l)                { printf("long=%s ", yytext); }
-{DECIMAL}                     { printf("real=%s ", yytext); }
-{INTEGER}                     { printf("entero=%s ", yytext); }
+({INTEGER}|{DECIMAL}|{SCIENTIFIC})(j|J)    { printf("imaginario=%s ", yytext); }
+{INTEGER}(L|l)                             { printf("long=%s ", yytext); }
+{SCIENTIFIC}                               { printf("cientifico=%s ", yytext); }
+{DECIMAL}                                  { printf("real=%s ", yytext); }
+{INTEGER}                                  { printf("entero=%s ", yytext); }
 
 ">="            { printf("mayor_ig= "); }
 "<="            { printf("menor_ig= "); }
 "=="            { printf("comp= "); }
 "!="            { printf("dif= "); }
+"<>"            { printf("dif_alt= "); }
 "**"            { printf("pot= "); }
+"//"            { printf("div_ent= "); }
+"<<"            { printf("desp_izq= "); }
+">>"            { printf("desp_der= "); }
+
+">>="           { printf("asig_right= "); }
+"<<="           { printf("asig_left= "); }
 "+="            { printf("asig_sum= "); }
 "-="            { printf("asig_rest= "); }
 "*="            { printf("asig_mult= "); }
+"/="            { printf("asig_div= "); }
+"//="           { printf("asig_divint= "); }
+"**="           { printf("asig_pot= "); }
+"%="            { printf("asig_mod= "); }
+"&="            { printf("asig_and= "); }
+"|="            { printf("asig_or= "); }
+"^="            { printf("asig_xor= "); }
 
 "+"             { printf("suma= "); }
 "-"             { printf("menos= "); }
 "*"             { printf("mult= "); }
 "/"             { printf("div= "); }
+"%"             { printf("mod= "); }
+"&"             { printf("and_bit= "); }
+"|"             { printf("or_bit= "); }
+"^"             { printf("xor= "); }
+"~"             { printf("not_bit= "); }
 "="             { printf("asign= "); }
 "<"             { printf("menor= "); }
 ">"             { printf("mayor= "); }
@@ -87,8 +124,15 @@ DECIMAL  {DIGIT}+\.{DIGIT}*|{DIGIT}*\.{DIGIT}+
 ")"             { printf("parcierr= "); }
 "["             { printf("corabre= "); }
 "]"             { printf("corcierr= "); }
+"{"             { printf("llavabre= "); }
+"}"             { printf("llavcierr= "); }
 ":"             { printf("dospunt= "); }
+";"             { printf("puntocoma= "); }
 ","             { printf("coma= "); }
+"."             { printf("punto= "); }
+
+'([^'\\n\\\\]|\\\\.)*'         { printf("cadena=%s ", yytext); }
+\"([^\"\\n\\\\]|\\\\.)*\"      { printf("cadena=%s ", yytext); }
 
 {ID}            { printf("id%d=%s ", get_id_number(yytext), yytext); }
 

@@ -52,16 +52,25 @@ help:
 	@echo "=== Analizador Léxico - Ayuda ==="
 	@echo ""
 	@echo "Comandos disponibles:"
-	@echo "  make all        - Compilar el analizador léxico"
-	@echo "  make run        - Ejecutar con archivo de ejemplo"
-	@echo "  make run-custom - Ejecutar con entrada desde teclado"
-	@echo "  make clean      - Limpiar archivos generados"
-	@echo "  make help       - Mostrar esta ayuda"
+	@echo "  make all          - Compilar el analizador léxico"
+	@echo "  make run          - Ejecutar con archivo de ejemplo"
+	@echo "  make run-custom   - Ejecutar con entrada desde teclado"
+	@echo "  make run-file FILE=archivo.py - Ejecutar con archivo específico"
+	@echo "  make clean        - Limpiar archivos generados"
+	@echo "  make check-deps   - Verificar dependencias"
+	@echo "  make stats        - Mostrar estadísticas del proyecto"
+	@echo "  make install      - Instalación completa desde cero"
+	@echo "  make help         - Mostrar esta ayuda"
 	@echo ""
 	@echo "Archivos importantes:"
 	@echo "  $(LEX_SOURCE)   - Código fuente Lex"
 	@echo "  $(INPUT_FILE)   - Archivo de ejemplo"
 	@echo "  $(EXECUTABLE)   - Ejecutable final"
+	@echo ""
+	@echo "Ejemplos de uso:"
+	@echo "  make install                    # Instalación completa"
+	@echo "  make run                        # Ejecutar con ejemplo"
+	@echo "  make run-file FILE=mi_codigo.py # Ejecutar con archivo personalizado"
 
 # Verificar que Flex está instalado
 check-deps:
@@ -70,5 +79,35 @@ check-deps:
 	@which gcc > /dev/null || (echo "❌ Error: GCC no está instalado" && exit 1)
 	@echo "✅ Todas las dependencias están disponibles"
 
+# Ejecutar con archivo personalizado
+run-file: $(EXECUTABLE)
+	@if [ -z "$(FILE)" ]; then \
+		echo "❌ Error: Especifica un archivo con: make run-file FILE=archivo.py"; \
+		exit 1; \
+	fi
+	@if [ ! -f "$(FILE)" ]; then \
+		echo "❌ Error: El archivo $(FILE) no existe"; \
+		exit 1; \
+	fi
+	@echo "🚀 Ejecutando analizador léxico con archivo: $(FILE)"
+	@echo "================================================"
+	./$(EXECUTABLE) $(FILE)
+	@echo "================================================"
+
+# Mostrar estadísticas del proyecto
+stats:
+	@echo "📊 Estadísticas del proyecto:"
+	@echo "  Líneas en $(LEX_SOURCE): $$(wc -l < $(LEX_SOURCE))"
+	@echo "  Tamaño de $(LEX_SOURCE): $$(du -h $(LEX_SOURCE) | cut -f1)"
+	@if [ -f "$(EXECUTABLE)" ]; then \
+		echo "  Tamaño del ejecutable: $$(du -h $(EXECUTABLE) | cut -f1)"; \
+	else \
+		echo "  Ejecutable: No compilado"; \
+	fi
+
+# Instalación completa desde cero
+install: check-deps clean all
+	@echo "✅ Instalación completada exitosamente"
+
 # Reglas que no corresponden a archivos
-.PHONY: all run run-custom clean help check-deps
+.PHONY: all run run-custom run-file clean help check-deps stats install

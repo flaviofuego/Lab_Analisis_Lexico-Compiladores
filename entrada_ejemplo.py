@@ -3,18 +3,20 @@ def eval(xi, exp):
     for i in range(len(exp)) :
         part =? True
         for j in range(len(exp[i])) :
-            part = part and xi[exp[i][j]]
+            part = part and xi[exp[i][j]] 
         ans = ans or part
     return ans
 # comentario ignorado
 while 2*i<=40000L
-h = 3.4e-5 + 5j
-if i == 0:
-    break
+    h = 3.4e-5 + 5j
+    if i == 0:
+            break
 def otra_fun():
-    pass
-print('Esta es la respuesta',con_123, 'y la expresión ', 3*i+5*(7-x))
+        pass
+print(‘Esta es la respuesta’,con, ’y la expresión ’, 3*i+5*(7-x)) 
+
 #string de la hipotesis
 table = []
-y = 123ABC
-#i = 0
+y = [] 
+#i = 0 
+
