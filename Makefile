@@ -42,6 +42,9 @@ $(EXECUTABLE_BASIC): $(LEX_BASIC)
 	@echo "🔧 Compilando analizador básico..."
 	$(CC) $(CFLAGS) lex_basic.yy.c -o $(EXECUTABLE_BASIC) -lfl
 	@echo "✅ Analizador básico compilado: $(EXECUTABLE_BASIC)"
+	
+
+	
 
 # Ejecutar el analizador con el archivo de ejemplo
 run: $(EXECUTABLE)
@@ -163,6 +166,9 @@ install: check-deps clean all
 # Instalación básica
 install-basic: check-deps clean basic
 	@echo "✅ Instalación BÁSICA completada exitosamente"
+	@echo "================================================"
+	@echo "================================================"
+
 
 # Reglas que no corresponden a archivos
 .PHONY: all basic both run run-basic run-custom run-file run-basic-file clean help check-deps stats install install-basic
