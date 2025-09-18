@@ -80,6 +80,7 @@ El analizador reconoce **32 palabras reservadas**:
 - `docker-compose.yml` - Orquestación simplificada
 
 ## 🚀 Comandos de Uso
+
 ```bash
 # Compilar y ejecutar automáticamente
 docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "make clean && make all && make run"

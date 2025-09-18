@@ -62,7 +62,6 @@ STRING   \"[^\"]*\"|\'[^\']*\'
 "while"         { printf("WHILE "); }
 "print"         { printf("PRINT "); }
 "range"         { printf("RANGE "); }
-"len"           { printf("LEN "); }
 
 "True"          { printf("TRUE "); }
 "False"         { printf("FALSE "); }
