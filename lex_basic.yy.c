@@ -1029,7 +1029,7 @@ YY_RULE_SETUP
 case 37:
 YY_RULE_SETUP
 #line 87 "analizador_basico.l"
-{ printf("asig= "); }
+{ printf("asign= = "); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP

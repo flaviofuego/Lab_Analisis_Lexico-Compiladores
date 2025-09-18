@@ -84,7 +84,7 @@ INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
 "-"             { printf("menos=- "); }
 "*"             { printf("mult=* "); }
 "/"             { printf("div=/ "); }
-"="             { printf("asig= "); }
+"="             { printf("asign= = "); }
 "<"             { printf("menor= "); }
 ">"             { printf("mayor= "); }
 
