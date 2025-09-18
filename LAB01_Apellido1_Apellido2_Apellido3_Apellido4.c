@@ -1,6 +1,6 @@
-#line 2 "lex_basic.yy.c"
+#line 2 "LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c"
 
-#line 4 "lex_basic.yy.c"
+#line 4 "LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -564,8 +564,8 @@ void print_identifiers() {
 void print_errors() {
     printf("%d Errores\n", error_count);
 }
-#line 568 "lex_basic.yy.c"
-#line 569 "lex_basic.yy.c"
+#line 568 "LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c"
+#line 569 "LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c"
 
 #define INITIAL 0
 
@@ -785,7 +785,7 @@ YY_DECL
 #line 45 "LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
 
 
-#line 789 "lex_basic.yy.c"
+#line 789 "LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1097,7 +1097,7 @@ YY_RULE_SETUP
 #line 104 "LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
 ECHO;
 	YY_BREAK
-#line 1101 "lex_basic.yy.c"
+#line 1101 "LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
