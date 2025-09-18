@@ -40,6 +40,7 @@ DECIMAL  {DIGIT}+\.{DIGIT}*|{DIGIT}*\.{DIGIT}+
 SCIENTIFIC {DECIMAL}[eE][+-]?{DIGIT}+|{INTEGER}[eE][+-]?{DIGIT}+
 IMAGINARY ({INTEGER}|{DECIMAL}|{SCIENTIFIC})j
 STRING   \"[^\"]*\"|\'[^\']*\'
+INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
 
 %%
 
@@ -66,6 +67,7 @@ STRING   \"[^\"]*\"|\'[^\']*\'
 "True"          { printf("TRUE "); }
 "False"         { printf("FALSE "); }
 
+{INVALID_NUM}   { printf("ERROR=%s ", yytext); error_count++; }
 {STRING}        { printf("cadena=%s ", yytext); }
 {IMAGINARY}     { printf("imaginario=%s ", yytext); }
 {SCIENTIFIC}    { printf("real=%s ", yytext); }
