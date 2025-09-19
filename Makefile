@@ -12,14 +12,14 @@ CFLAGS = -Wall -Wextra -std=c99
 
 # Regla principal: compilar el analizador
 $(EXECUTABLE): $(LEX_SOURCE)
-	@flex -o lex.yy.c $(LEX_SOURCE) 2>/dev/null
-	@$(CC) $(CFLAGS) lex.yy.c -o $(EXECUTABLE) -lfl 2>/dev/null
+	@flex -o LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c $(LEX_SOURCE) 2>/dev/null
+	@$(CC) $(CFLAGS) LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c -o $(EXECUTABLE) -lfl 2>/dev/null
 
 # Instalación del analizador
 install-basic:
 	@which flex > /dev/null 2>&1 || (echo "❌ Error: Flex no está instalado" && exit 1)
 	@which gcc > /dev/null 2>&1 || (echo "❌ Error: GCC no está instalado" && exit 1)
-	@rm -f lex.yy.c $(EXECUTABLE) 2>/dev/null
+	@rm -f LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c $(EXECUTABLE) 2>/dev/null
 	@$(MAKE) $(EXECUTABLE)
 	@echo "✅ Analizador léxico compilado exitosamente"
 
@@ -48,7 +48,7 @@ run-basic-file: $(EXECUTABLE)
 # Limpiar archivos generados
 clean:
 	@echo "🧹 Limpiando archivos generados..."
-	@rm -f lex.yy.c $(EXECUTABLE) 2>/dev/null
+	@rm -f LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c $(EXECUTABLE) 2>/dev/null
 	@echo "✅ Limpieza completada"
 
 # Mostrar ayuda
