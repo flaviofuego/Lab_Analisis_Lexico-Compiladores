@@ -2,9 +2,9 @@
 # Laboratorio de Análisis Léxico - Compiladores
 
 # Variables de configuración
-LEX_SOURCE = LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l
-EXECUTABLE = LAB01_Apellido1_Apellido2_Apellido3_Apellido4
-INPUT_FILE = entrada_ejemplo.py
+LEX_SOURCE = src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l
+EXECUTABLE = dist/LAB01_Apellido1_Apellido2_Apellido3_Apellido4
+INPUT_FILE = entradas/entrada_ejemplo.py
 
 # Compilador y flags
 CC = gcc
