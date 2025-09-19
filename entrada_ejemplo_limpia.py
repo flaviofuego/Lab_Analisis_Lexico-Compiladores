@@ -15,4 +15,3 @@ def otra_fun():
 print('Esta es la respuesta',con_123, 'y la expresión ', 3*i+5*(7-x))
 table = []
 y = 123ABC
-

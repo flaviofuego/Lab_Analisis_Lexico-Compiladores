@@ -2,9 +2,13 @@
 
 ## Comprensión Profunda del Proyecto
 
-Este laboratorio representa tu primera inmersión real en el fascinante mundo de los compiladores. Imagina que estás construyendo el primer componente de un traductor universal que puede entender el lenguaje de programación Python. El análisis léxico es como enseñar a una máquina a reconocer las "palabras" individuales de un lenguaje de programación, de la misma manera que un niño aprende a distinguir entre diferentes tipos de palabras cuando está aprendiendo a leer.
+Este laboratorio representa tu primera inmersión real en el fascinante mundo de los compiladores, ahora con **dos enfoques diferentes** para el aprendizaje progresivo. Imagina que estás construyendo los primeros componentes de un traductor universal que puede entender el lenguaje de programación Python a diferentes niveles de complejidad.
 
-Cuando escribes código en Python, tu cerebro automáticamente reconoce que `def` es una palabra especial que define una función, que `variable_name` es el nombre de una variable, y que `3.14` es un número decimal. Nuestro analizador léxico hace exactamente lo mismo, pero de forma algorítmica y sistemática.
+Hemos implementado **dos analizadores léxicos**:
+- **Analizador BÁSICO**: 16 palabras reservadas fundamentales (ideal para entender los conceptos)
+- **Analizador COMPLETO**: 32 palabras reservadas del subset moderno de Python (para análisis completo)
+
+El análisis léxico es como enseñar a una máquina a reconocer las "palabras" individuales de un lenguaje de programación, de la misma manera que un niño aprende a distinguir entre diferentes tipos de palabras cuando está aprendiendo a leer.
 
 ## Arquitectura del Sistema con Docker
 
@@ -14,21 +18,34 @@ La belleza de esta aproximación es que todos los estudiantes trabajarán en exa
 
 ## Entendiendo los Componentes del Sistema
 
-### El Corazón: analizador_lexico.l
+### Los Corazones del Sistema: analizador_lexico.l y analizador_basico.l
 
-Este archivo es donde ocurre toda la magia. Está escrito en el lenguaje de especificación de Lex (también conocido como Flex), que es una herramienta diseñada específicamente para crear analizadores léxicos. El archivo tiene tres secciones principales que trabajan en armonía.
+Estos archivos son donde ocurre toda la magia. Están escritos en el lenguaje de especificación de Lex (también conocido como Flex), que es una herramienta diseñada específicamente para crear analizadores léxicos.
 
-La primera sección contiene declaraciones en C y definiciones de patrones. Aquí definimos variables globales que nos ayudarán a mantener el estado durante el análisis, como el contador de identificadores y el array que almacena los identificadores únicos. También definimos patrones reutilizables usando expresiones regulares, como `DIGIT` para representar cualquier dígito del 0 al 9.
+**analizador_lexico.l** (COMPLETO - 171 líneas):
+- 32 palabras reservadas completas de Python
+- Operadores avanzados y números complejos
+- Manejo completo de características modernas como async/await
 
-La segunda sección es donde definimos las reglas de reconocimiento. Cada regla asocia un patrón (expresión regular) con una acción (código C que se ejecuta cuando se encuentra ese patrón). El orden de estas reglas es crucial porque Lex aplica la primera regla que coincida con la entrada más larga posible.
+**analizador_basico.l** (BÁSICO - 120 líneas):
+- 16 palabras reservadas fundamentales
+- Operadores básicos esenciales
+- Perfecto para entender los conceptos sin abrumarse
 
-La tercera sección contiene código C adicional, incluyendo la función `main()` que orquesta todo el proceso de análisis.
+Cada archivo tiene tres secciones principales que trabajan en armonía:
+1. **Declaraciones**: Variables globales y patrones reutilizables
+2. **Reglas**: Asociaciones patrón-acción usando expresiones regulares
+3. **Código C**: Función main() que orquesta el análisis
 
 ### El Cerebro Organizativo: Makefile
 
-El Makefile es como un chef que conoce exactamente la receta para crear nuestro analizador léxico. Automatiza el proceso de dos pasos: primero, Flex convierte nuestro archivo `.l` en código C estándar; segundo, GCC compila ese código C en un ejecutable que podemos correr.
+El Makefile es como un chef que conoce exactamente las recetas para crear **ambos analizadores léxicos**. Automatiza los procesos de compilación para:
 
-Esta automatización es fundamental porque el proceso manual sería propenso a errores y tedioso. Además, el Makefile incluye objetivos útiles para ejecutar pruebas y limpiar archivos temporales.
+- **Analizador BÁSICO**: `make install-basic`, `make run-basic`
+- **Analizador COMPLETO**: `make install`, `make run`
+- **Comandos comparativos**: `make both`, `make stats`
+
+Esta automatización es fundamental porque el proceso manual sería propenso a errores y tedioso. El Makefile incluye objetivos útiles para ejecutar pruebas, comparar ambos analizadores y limpiar archivos temporales.
 
 ### El Entorno Controlado: Configuración Docker
 
