@@ -1,6 +1,6 @@
-#line 2 "dist/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c"
+#line 2 "dist/LAB01_Arregoces_Gomez_Sanchez.c"
 
-#line 4 "dist/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c"
+#line 4 "dist/LAB01_Arregoces_Gomez_Sanchez.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -532,8 +532,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
-#line 2 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 1 "src/LAB01_Arregoces_Gomez_Sanchez.l"
+#line 2 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -619,8 +619,8 @@ void print_identifiers() {
 void print_errors() {
     printf("%d Errores\n", error_count);
 }
-#line 623 "dist/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c"
-#line 624 "dist/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c"
+#line 623 "dist/LAB01_Arregoces_Gomez_Sanchez.c"
+#line 624 "dist/LAB01_Arregoces_Gomez_Sanchez.c"
 
 #define INITIAL 0
 
@@ -837,10 +837,10 @@ YY_DECL
 		}
 
 	{
-#line 100 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 100 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 
 
-#line 844 "dist/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c"
+#line 844 "dist/LAB01_Arregoces_Gomez_Sanchez.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -902,257 +902,257 @@ case 1:
 (yy_c_buf_p) = yy_cp -= 1;
 YY_DO_BEFORE_ACTION; /* set up yytext again */
 YY_RULE_SETUP
-#line 102 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 102 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { /* comentarios */ }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 104 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 104 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("AND "); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 105 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 105 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("BREAK "); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 106 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 106 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("CONTINUE "); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 107 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 107 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("DEF "); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 108 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 108 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("ELIF "); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 109 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 109 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("ELSE "); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 110 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 110 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("FOR "); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 111 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 111 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("IF "); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 112 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 112 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("IN "); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 113 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 113 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("IS "); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 114 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 114 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("NOT "); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 115 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 115 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("OR "); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 116 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 116 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("PASS "); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 117 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 117 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("RETURN "); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 118 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 118 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("WHILE "); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 119 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 119 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("PRINT "); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 120 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 120 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("RANGE "); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 122 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 122 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("TRUE "); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 123 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 123 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("FALSE "); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 125 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 125 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_to_buffer(temp); error_count++; }
 	YY_BREAK
 case 22:
 /* rule 22 can match eol */
 YY_RULE_SETUP
-#line 126 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 126 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { char temp[1000]; sprintf(temp, "cadena=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 127 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 127 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { char temp[100]; sprintf(temp, "imaginario=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 128 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 128 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { char temp[100]; sprintf(temp, "real=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 129 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 129 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { char temp[100]; sprintf(temp, "long=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 130 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 130 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { char temp[100]; sprintf(temp, "real=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 131 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 131 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { char temp[100]; sprintf(temp, "entero=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 133 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 133 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("comp= "); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 134 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 134 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("dif= "); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 135 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 135 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("mayor_ig= "); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 136 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 136 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("menor_ig= "); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 137 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 137 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("ERROR=? "); error_count++; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 138 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 138 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("suma=+ "); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 139 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 139 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("menos=- "); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 140 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 140 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("mult=* "); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 141 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 141 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("div=/ "); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 142 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 142 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("asign= = "); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 143 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 143 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("menor= "); }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 144 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 144 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("mayor= "); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 146 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 146 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("parabre=( "); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 147 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 147 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("parcierr=) "); }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 148 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 148 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("corabre=[ "); }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 149 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 149 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("corcierr=] "); }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 150 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 150 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("dospunt=: "); }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 151 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 151 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("coma=, "); }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 153 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 153 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { char temp[100]; sprintf(temp, "id%d=%s ", get_id_number(yytext), yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 155 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 155 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { /* espacios */ }
 	YY_BREAK
 case 48:
 /* rule 48 can match eol */
 YY_RULE_SETUP
-#line 156 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 156 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { append_to_buffer("\n"); }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 157 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 157 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_to_buffer(temp); error_count++; }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 159 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 159 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 ECHO;
 	YY_BREAK
-#line 1156 "dist/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.c"
+#line 1156 "dist/LAB01_Arregoces_Gomez_Sanchez.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2157,7 +2157,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 159 "src/LAB01_Apellido1_Apellido2_Apellido3_Apellido4.l"
+#line 159 "src/LAB01_Arregoces_Gomez_Sanchez.l"
 
 
 int main(int argc, char** argv) {
