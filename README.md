@@ -1,18 +1,22 @@
 # 🚀 Guía de Uso - Analizador Léxico Python (Básico)
 
 ## 📋 Descripción
+
 **Analizador léxico básico** para Python implementado con Flex/Lex:
+
 - **16 palabras reservadas fundamentales** (ideal para empezar)
 - Reconocimiento de identificadores, números, operadores y delimitadores
 - Manejo de cadenas y comentarios
 
 ## 🛠️ Requisitos
+
 - **Docker Desktop** (Windows/Mac)
 - **PowerShell** o **Command Prompt**
 
 ## 🚀 Inicio Rápido
 
 ### 1. Clonar y preparar
+
 ```bash
 git clone https://github.com/flaviofuego/Lab_Analisis_Lexico-Compiladores.git
 cd Lab_Analisis_Lexico-Compiladores
@@ -23,7 +27,7 @@ docker build -t analizador-lexico .
 
 ```powershell
 # Compilar el analizador básico
-docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "make install-basic && ./dist/LAB01_Arregoces_Gomez_Sanchez_Sharick ./entradas/entrada_ejemplo.py"
+docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "make install-basic && ./dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick ./entradas/entrada_ejemplo.py"
 
 
 
@@ -46,7 +50,7 @@ docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "make run-basic
 echo 'def suma(a, b): return a + b' > ./entradas/prueba.py
 
 # Analizarlo
-docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "./dist/LAB01_Arregoces_Gomez_Sanchez_Sharick ./entradas/prueba.py"
+docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "./dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick ./entradas/prueba.py"
 ```
 
 ## 🔍 Qué Reconoce el Analizador Básico
