@@ -23,7 +23,7 @@ docker build -t analizador-lexico .
 
 ```powershell
 # Compilar el analizador básico
-docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "make install-basic && ./dist/LAB01_Arregoces_Gomez_Sanchez ./entradas/entrada_ejemplo.py"
+docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "make install-basic && ./dist/LAB01_Arregoces_Gomez_Sanchez_Sharick ./entradas/entrada_ejemplo.py"
 
 
 
@@ -46,7 +46,7 @@ docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "make run-basic
 echo 'def suma(a, b): return a + b' > ./entradas/prueba.py
 
 # Analizarlo
-docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "./dist/LAB01_Arregoces_Gomez_Sanchez ./entradas/prueba.py"
+docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "./dist/LAB01_Arregoces_Gomez_Sanchez_Sharick ./entradas/prueba.py"
 ```
 
 ## 🔍 Qué Reconoce el Analizador Básico

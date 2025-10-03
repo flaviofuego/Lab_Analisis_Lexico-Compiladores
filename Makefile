@@ -2,9 +2,9 @@
 # Laboratorio de Análisis Léxico - Compiladores
 
 # Variables de configuración
-LEX_SOURCE = src/LAB01_Arregoces_Gomez_Sanchez.l
-EXECUTABLE = dist/LAB01_Arregoces_Gomez_Sanchez
-COMPILE_FILE = dist/LAB01_Arregoces_Gomez_Sanchez.c
+LEX_SOURCE = src/LAB01_Arregoces_Gomez_Sanchez_Sharick.l
+EXECUTABLE = dist/LAB01_Arregoces_Gomez_Sanchez_Sharick
+COMPILE_FILE = dist/LAB01_Arregoces_Gomez_Sanchez_Sharick.c
 INPUT_FILE = entradas/entrada_ejemplo.py
 # Compilador y flags
 CC = gcc

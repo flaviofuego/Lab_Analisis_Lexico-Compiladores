@@ -1,9 +1,0 @@
-DEF id1=suma parabre=( id2=a coma=, id3=b parcierr=) dospunt=: RETURN id2=a suma=+ id3=b 
-
-
-=== ESTADISTICAS ===
-3 Identificadores
-Id1=suma
-Id2=a
-Id3=b
-0 Errores
