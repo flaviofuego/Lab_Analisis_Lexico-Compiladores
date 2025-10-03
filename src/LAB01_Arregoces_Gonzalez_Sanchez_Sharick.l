@@ -49,12 +49,11 @@ void save_output_to_file(const char* input_filename) {
     FILE* output_file = fopen(output_filename, "w");
     if (output_file) {
         fprintf(output_file, "%s", output_buffer);
-        fprintf(output_file, "\n\n=== ESTADISTICAS ===\n");
-        fprintf(output_file, "%d Identificadores\n", id_counter);
+        fprintf(output_file, "\n\n%d Identificadores\n\n", id_counter);
         for(int i = 0; i < id_counter; i++) {
             fprintf(output_file, "Id%d=%s\n", i + 1, identifiers[i]);
         }
-        fprintf(output_file, "%d Errores\n", error_count);
+        fprintf(output_file, "\n%d Errores\n", error_count);
         fclose(output_file);
         printf("Salida guardada en: %s\n", output_filename);
     } else {
@@ -75,14 +74,14 @@ int get_id_number(char* identifier) {
 }
 
 void print_identifiers() {
-    printf("%d Identificadores\n", id_counter);
+    printf("\n%d Identificadores\n", id_counter);
     for(int i = 0; i < id_counter; i++) {
         printf("Id%d=%s\n", i + 1, identifiers[i]);
     }
 }
 
 void print_errors() {
-    printf("%d Errores\n", error_count);
+    printf("\n%d Errores\n", error_count);
 }
 %}
 
@@ -152,7 +151,8 @@ INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
 
 {ID}            { char temp[100]; sprintf(temp, "id%d=%s ", get_id_number(yytext), yytext); append_to_buffer(temp); }
 
-[ \t]+          { /* espacios */ }
+^[ \t]+         { append_to_buffer(yytext); }
+[ \t]+          { /* espacios dentro de línea */ }
 \n              { append_to_buffer("\n"); }
 .               { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_to_buffer(temp); error_count++; }
 
@@ -178,7 +178,6 @@ int main(int argc, char** argv) {
     save_output_to_file(input_filename);
     
     // Mostrar estadísticas en consola también
-    printf("\n=== ESTADISTICAS ===\n");
     print_identifiers();
     print_errors();
     

@@ -352,8 +352,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 50
-#define YY_END_OF_BUFFER 51
+#define YY_NUM_RULES 51
+#define YY_END_OF_BUFFER 52
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -361,22 +361,22 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[125] =
+static const flex_int16_t yy_accept[127] =
     {   0,
-        0,    0,   51,   49,   47,   48,   49,   49,    1,   49,
-       40,   41,   35,   33,   45,   34,   49,   36,   27,   44,
+        0,    0,   52,   50,   48,   49,   50,   50,    1,   50,
+       40,   41,   35,   33,   45,   34,   50,   36,   27,   44,
        38,   37,   39,   46,   46,   46,   42,   43,   46,   46,
        46,   46,   46,   46,   46,   46,   46,   46,   46,   46,
-       47,   29,    0,   22,    1,    0,   26,   26,   27,   21,
-       21,   25,   23,   31,   28,   32,   30,   46,   46,   46,
-       46,   46,   46,   46,   46,   46,    9,   10,   11,   46,
-       13,   46,   46,   46,   46,   46,    0,   26,   21,   21,
-        0,   21,   46,   46,    2,   46,   46,    5,   46,   46,
-        8,   12,   46,   46,   46,   46,   46,    0,   24,   24,
+       47,   48,   29,    0,   22,    1,    0,   26,   26,   27,
+       21,   21,   25,   23,   31,   28,   32,   30,   46,   46,
+       46,   46,   46,   46,   46,   46,   46,    9,   10,   11,
+       46,   13,   46,   46,   46,   46,   46,   47,    0,   26,
+       21,   21,    0,   21,   46,   46,    2,   46,   46,    5,
+       46,   46,    8,   12,   46,   46,   46,   46,   46,    0,
 
-       21,   46,   19,   46,   46,    6,    7,   14,   46,   46,
-       46,   46,   20,    3,   46,   17,   18,   46,   16,   46,
-       15,   46,    4,    0
+       24,   24,   21,   46,   19,   46,   46,    6,    7,   14,
+       46,   46,   46,   46,   20,    3,   46,   17,   18,   46,
+       16,   46,   15,   46,    4,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -420,102 +420,102 @@ static const YY_CHAR yy_meta[50] =
         4,    4,    4,    4,    4,    4,    4,    4,    4
     } ;
 
-static const flex_int16_t yy_base[132] =
+static const flex_int16_t yy_base[134] =
     {   0,
-        0,    0,  183,  184,  180,  184,  162,  175,    0,  172,
-      184,  184,  184,  184,  184,  184,  162,  184,   36,  184,
-      158,   32,  157,    0,  145,  129,  184,  184,  131,  127,
-      128,  136,  128,  125,   20,  124,  121,   24,   26,  128,
-      162,  184,  158,  184,    0,  155,   42,   48,   63,   64,
-       79,  184,  184,  184,  184,  184,  184,    0,  120,  112,
-      126,  124,  115,  121,   45,  110,    0,    0,    0,  107,
-        0,  107,  114,  109,  103,  111,   83,   77,    0,   82,
-      132,   62,   89,   93,    0,   96,   78,    0,   89,   89,
-        0,    0,   76,   78,   83,   69,   74,   98,   69,   89,
+        0,  184,  185,  187,  182,  187,  164,  177,    0,  174,
+      187,  187,  187,  187,  187,  187,  164,  187,   36,  187,
+      160,   32,  159,    0,  147,  131,  187,  187,  133,  129,
+      130,  138,  130,  127,   20,  126,  123,   24,   26,  130,
+      164,  163,  187,  159,  187,    0,  156,   42,   48,   63,
+       64,   79,  187,  187,  187,  187,  187,  187,    0,  121,
+      113,  127,  125,  116,  122,   45,  111,    0,    0,    0,
+      108,    0,  108,  115,  110,  104,  112,  147,   83,   77,
+        0,   82,  132,   62,   89,   93,    0,   96,   78,    0,
+       89,   89,    0,    0,   76,   78,   83,   69,   74,   98,
 
-        0,   79,    0,   72,   72,    0,    0,    0,   62,   72,
-       39,   40,    0,    0,   31,    0,    0,   30,    0,   20,
-        0,   33,    0,  184,  128,  133,  138,  141,  142,   59,
-       53
+       69,   89,    0,   79,    0,   72,   72,    0,    0,    0,
+       62,   72,   39,   40,    0,    0,   31,    0,    0,   30,
+        0,   20,    0,   33,    0,  187,  128,  133,  138,  141,
+      142,   59,   53
     } ;
 
-static const flex_int16_t yy_def[132] =
+static const flex_int16_t yy_def[134] =
     {   0,
-      124,    1,  124,  124,  124,  124,  124,  125,  126,  127,
-      124,  124,  124,  124,  124,  124,  124,  124,  128,  124,
-      124,  124,  124,  129,  129,  129,  124,  124,  129,  129,
-      129,  129,  129,  129,  129,  129,  129,  129,  129,  129,
-      124,  124,  125,  124,  126,  127,  124,  124,  128,  130,
-      130,  124,  124,  124,  124,  124,  124,  129,  129,  129,
-      129,  129,  129,  129,  129,  129,  129,  129,  129,  129,
-      129,  129,  129,  129,  129,  129,  124,  124,  131,  130,
-      124,  131,  129,  129,  129,  129,  129,  129,  129,  129,
-      129,  129,  129,  129,  129,  129,  129,  124,  124,  124,
+      126,    1,  126,  126,  126,  126,  126,  127,  128,  129,
+      126,  126,  126,  126,  126,  126,  126,  126,  130,  126,
+      126,  126,  126,  131,  131,  131,  126,  126,  131,  131,
+      131,  131,  131,  131,  131,  131,  131,  131,  131,  131,
+      126,  126,  126,  127,  126,  128,  129,  126,  126,  130,
+      132,  132,  126,  126,  126,  126,  126,  126,  131,  131,
+      131,  131,  131,  131,  131,  131,  131,  131,  131,  131,
+      131,  131,  131,  131,  131,  131,  131,  126,  126,  126,
+      133,  132,  126,  133,  131,  131,  131,  131,  131,  131,
+      131,  131,  131,  131,  131,  131,  131,  131,  131,  126,
 
-      131,  129,  129,  129,  129,  129,  129,  129,  129,  129,
-      129,  129,  129,  129,  129,  129,  129,  129,  129,  129,
-      129,  129,  129,    0,  124,  124,  124,  124,  124,  124,
-      124
+      126,  126,  133,  131,  131,  131,  131,  131,  131,  131,
+      131,  131,  131,  131,  131,  131,  131,  131,  131,  131,
+      131,  131,  131,  131,  131,    0,  126,  126,  126,  126,
+      126,  126,  126
     } ;
 
-static const flex_int16_t yy_nxt[234] =
+static const flex_int16_t yy_nxt[237] =
     {   0,
         4,    5,    6,    7,    8,    9,   10,   11,   12,   13,
        14,   15,   16,   17,   18,   19,   20,   21,   22,   23,
         4,   24,   24,   25,   24,   26,   27,   28,   24,   29,
        30,   31,   32,   33,   34,   24,   24,   35,   24,   24,
-       24,   36,   37,   38,   39,   24,   24,   24,   40,   48,
-       55,   49,   56,   72,   67,   74,   79,   47,   51,   75,
-       52,   68,   80,   78,   77,   69,  123,  122,   73,   51,
-       77,  121,  120,  119,   53,   77,   48,   82,   49,   79,
-       53,   77,   89,  118,   99,   51,   53,   52,   79,   81,
-       90,   81,   78,   98,   82,   98,   51,   79,   99,   77,
+       24,   36,   37,   38,   39,   24,   24,   24,   40,   49,
+       56,   50,   57,   73,   68,   75,   81,   48,   52,   76,
+       53,   69,   82,   80,   79,   70,  125,  124,   74,   52,
+       79,  123,  122,  121,   54,   79,   49,   84,   50,   81,
+       54,   79,   91,  120,  101,   52,   54,   53,   81,   83,
+       92,   83,   80,  100,   84,  100,   52,   81,  101,   79,
 
-      101,   53,   79,   79,  100,  117,   79,   53,  116,  115,
-       77,  114,  113,   99,  112,   53,  111,   79,  110,  109,
-       79,  108,  107,  106,  105,  104,  103,   53,   43,   43,
-       43,   43,   43,   45,  102,   45,   45,   45,   46,   46,
-       46,   46,   46,   50,   50,   58,   58,  100,   97,   96,
-       95,   94,   93,   92,   91,   88,   87,   86,   85,   84,
-       83,   44,   44,   41,   76,   71,   70,   66,   65,   64,
-       63,   62,   61,   60,   59,   57,   54,   47,   44,   44,
-       42,   41,  124,    3,  124,  124,  124,  124,  124,  124,
-      124,  124,  124,  124,  124,  124,  124,  124,  124,  124,
+      103,   54,   81,   81,  102,  119,   81,   54,  118,  117,
+       79,  116,  115,  101,  114,   54,  113,   81,  112,  111,
+       81,  110,  109,  108,  107,  106,  105,   54,   44,   44,
+       44,   44,   44,   46,  104,   46,   46,   46,   47,   47,
+       47,   47,   47,   51,   51,   59,   59,  102,   78,   99,
+       98,   97,   96,   95,   94,   93,   90,   89,   88,   87,
+       86,   85,   45,   45,   42,   78,   77,   72,   71,   67,
+       66,   65,   64,   63,   62,   61,   60,   58,   55,   48,
+       45,   45,   43,   42,  126,   41,    3,  126,  126,  126,
+      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
 
-      124,  124,  124,  124,  124,  124,  124,  124,  124,  124,
-      124,  124,  124,  124,  124,  124,  124,  124,  124,  124,
-      124,  124,  124,  124,  124,  124,  124,  124,  124,  124,
-      124,  124,  124
+      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
+      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
+      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
+      126,  126,  126,  126,  126,  126
     } ;
 
-static const flex_int16_t yy_chk[234] =
+static const flex_int16_t yy_chk[237] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,   19,
-       22,   19,   22,   38,   35,   39,  131,   47,   19,   39,
-       19,   35,  130,   48,   47,   35,  122,  120,   38,   19,
-       48,  118,  115,  112,   19,   47,   49,   82,   49,   50,
-       47,   48,   65,  111,   99,   49,   48,   49,   50,   51,
-       65,   51,   78,   77,   51,   77,   49,   80,   77,   78,
+       22,   19,   22,   38,   35,   39,  133,   48,   19,   39,
+       19,   35,  132,   49,   48,   35,  124,  122,   38,   19,
+       49,  120,  117,  114,   19,   48,   50,   84,   50,   51,
+       48,   49,   66,  113,  101,   50,   49,   50,   51,   52,
+       66,   52,   80,   79,   52,   79,   50,   82,   79,   80,
 
-       82,   49,   50,   51,  100,  110,   80,   99,  109,  105,
-       78,  104,  102,   98,   97,   78,   96,   51,   95,   94,
-       80,   93,   90,   89,   87,   86,   84,  100,  125,  125,
-      125,  125,  125,  126,   83,  126,  126,  126,  127,  127,
-      127,  127,  127,  128,  128,  129,  129,   81,   76,   75,
-       74,   73,   72,   70,   66,   64,   63,   62,   61,   60,
-       59,   46,   43,   41,   40,   37,   36,   34,   33,   32,
-       31,   30,   29,   26,   25,   23,   21,   17,   10,    8,
-        7,    5,    3,  124,  124,  124,  124,  124,  124,  124,
-      124,  124,  124,  124,  124,  124,  124,  124,  124,  124,
+       84,   50,   51,   52,  102,  112,   82,  101,  111,  107,
+       80,  106,  104,  100,   99,   80,   98,   52,   97,   96,
+       82,   95,   92,   91,   89,   88,   86,  102,  127,  127,
+      127,  127,  127,  128,   85,  128,  128,  128,  129,  129,
+      129,  129,  129,  130,  130,  131,  131,   83,   78,   77,
+       76,   75,   74,   73,   71,   67,   65,   64,   63,   62,
+       61,   60,   47,   44,   42,   41,   40,   37,   36,   34,
+       33,   32,   31,   30,   29,   26,   25,   23,   21,   17,
+       10,    8,    7,    5,    3,    2,  126,  126,  126,  126,
+      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
 
-      124,  124,  124,  124,  124,  124,  124,  124,  124,  124,
-      124,  124,  124,  124,  124,  124,  124,  124,  124,  124,
-      124,  124,  124,  124,  124,  124,  124,  124,  124,  124,
-      124,  124,  124
+      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
+      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
+      126,  126,  126,  126,  126,  126,  126,  126,  126,  126,
+      126,  126,  126,  126,  126,  126
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -584,12 +584,11 @@ void save_output_to_file(const char* input_filename) {
     FILE* output_file = fopen(output_filename, "w");
     if (output_file) {
         fprintf(output_file, "%s", output_buffer);
-        fprintf(output_file, "\n\n=== ESTADISTICAS ===\n");
-        fprintf(output_file, "%d Identificadores\n", id_counter);
+        fprintf(output_file, "\n\n%d Identificadores\n\n", id_counter);
         for(int i = 0; i < id_counter; i++) {
             fprintf(output_file, "Id%d=%s\n", i + 1, identifiers[i]);
         }
-        fprintf(output_file, "%d Errores\n", error_count);
+        fprintf(output_file, "\n%d Errores\n", error_count);
         fclose(output_file);
         printf("Salida guardada en: %s\n", output_filename);
     } else {
@@ -610,17 +609,17 @@ int get_id_number(char* identifier) {
 }
 
 void print_identifiers() {
-    printf("%d Identificadores\n", id_counter);
+    printf("\n%d Identificadores\n", id_counter);
     for(int i = 0; i < id_counter; i++) {
         printf("Id%d=%s\n", i + 1, identifiers[i]);
     }
 }
 
 void print_errors() {
-    printf("%d Errores\n", error_count);
+    printf("\n%d Errores\n", error_count);
 }
+#line 622 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.c"
 #line 623 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.c"
-#line 624 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.c"
 
 #define INITIAL 0
 
@@ -800,6 +799,9 @@ extern int yylex (void);
 #endif
 
 #define YY_RULE_SETUP \
+	if ( yyleng > 0 ) \
+		YY_CURRENT_BUFFER_LVALUE->yy_at_bol = \
+				(yytext[yyleng - 1] == '\n'); \
 	YY_USER_ACTION
 
 /** The main scanner function which does all the work.
@@ -837,10 +839,10 @@ YY_DECL
 		}
 
 	{
-#line 100 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 99 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 
 
-#line 844 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.c"
+#line 846 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -855,6 +857,7 @@ YY_DECL
 		yy_bp = yy_cp;
 
 		yy_current_state = (yy_start);
+		yy_current_state += YY_AT_BOL();
 yy_match:
 		do
 			{
@@ -867,13 +870,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 125 )
+				if ( yy_current_state >= 127 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 184 );
+		while ( yy_base[yy_current_state] != 187 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -899,257 +902,262 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 102 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 101 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { /* comentarios */ }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 104 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 103 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("AND "); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 105 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 104 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("BREAK "); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 106 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 105 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("CONTINUE "); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 107 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 106 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("DEF "); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 108 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 107 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("ELIF "); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 109 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 108 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("ELSE "); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 110 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 109 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("FOR "); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 111 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 110 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("IF "); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 112 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 111 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("IN "); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 113 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 112 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("IS "); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 114 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 113 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("NOT "); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 115 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 114 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("OR "); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 116 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 115 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("PASS "); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 117 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 116 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("RETURN "); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 118 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 117 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("WHILE "); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 119 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 118 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("PRINT "); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 120 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 119 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("RANGE "); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 122 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 121 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("TRUE "); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 123 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 122 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("FALSE "); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 125 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 124 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_to_buffer(temp); error_count++; }
 	YY_BREAK
 case 22:
 /* rule 22 can match eol */
 YY_RULE_SETUP
-#line 126 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 125 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { char temp[1000]; sprintf(temp, "cadena=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 127 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 126 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { char temp[100]; sprintf(temp, "imaginario=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 128 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 127 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { char temp[100]; sprintf(temp, "real=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 129 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 128 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { char temp[100]; sprintf(temp, "long=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 130 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 129 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { char temp[100]; sprintf(temp, "real=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 131 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 130 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { char temp[100]; sprintf(temp, "entero=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 133 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 132 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("comp= "); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 134 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 133 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("dif= "); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 135 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 134 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("mayor_ig= "); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 136 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 135 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("menor_ig= "); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 137 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 136 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("ERROR=? "); error_count++; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 138 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 137 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("suma=+ "); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 139 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 138 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("menos=- "); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 140 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 139 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("mult=* "); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 141 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 140 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("div=/ "); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 142 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 141 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("asign= = "); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 143 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 142 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("menor= "); }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 144 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 143 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("mayor= "); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 146 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 145 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("parabre=( "); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 147 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 146 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("parcierr=) "); }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 148 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 147 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("corabre=[ "); }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 149 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 148 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("corcierr=] "); }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 150 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 149 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("dospunt=: "); }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 151 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 150 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("coma=, "); }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 153 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 152 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { char temp[100]; sprintf(temp, "id%d=%s ", get_id_number(yytext), yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 155 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
-{ /* espacios */ }
+#line 154 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+{ append_to_buffer(yytext); }
 	YY_BREAK
 case 48:
-/* rule 48 can match eol */
+YY_RULE_SETUP
+#line 155 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+{ /* espacios dentro de línea */ }
+	YY_BREAK
+case 49:
+/* rule 49 can match eol */
 YY_RULE_SETUP
 #line 156 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { append_to_buffer("\n"); }
 	YY_BREAK
-case 49:
+case 50:
 YY_RULE_SETUP
 #line 157 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_to_buffer(temp); error_count++; }
 	YY_BREAK
-case 50:
+case 51:
 YY_RULE_SETUP
 #line 159 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
 ECHO;
 	YY_BREAK
-#line 1153 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.c"
+#line 1161 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1434,6 +1442,7 @@ static int yy_get_next_buffer (void)
 	char *yy_cp;
     
 	yy_current_state = (yy_start);
+	yy_current_state += YY_AT_BOL();
 
 	for ( yy_cp = (yytext_ptr) + YY_MORE_ADJ; yy_cp < (yy_c_buf_p); ++yy_cp )
 		{
@@ -1446,7 +1455,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 125 )
+			if ( yy_current_state >= 127 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1474,11 +1483,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 125 )
+		if ( yy_current_state >= 127 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 124);
+	yy_is_jam = (yy_current_state == 126);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
@@ -1593,6 +1602,8 @@ static int yy_get_next_buffer (void)
 	c = *(unsigned char *) (yy_c_buf_p);	/* cast for 8-bit char's */
 	*(yy_c_buf_p) = '\0';	/* preserve yytext */
 	(yy_hold_char) = *++(yy_c_buf_p);
+
+	YY_CURRENT_BUFFER_LVALUE->yy_at_bol = (c == '\n');
 
 	return c;
 }
@@ -2177,7 +2188,6 @@ int main(int argc, char** argv) {
     save_output_to_file(input_filename);
     
     // Mostrar estadísticas en consola también
-    printf("\n=== ESTADISTICAS ===\n");
     print_identifiers();
     print_errors();
     
