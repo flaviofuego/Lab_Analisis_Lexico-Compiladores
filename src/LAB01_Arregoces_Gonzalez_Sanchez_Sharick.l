@@ -112,6 +112,7 @@ INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
 "else"          { append_to_buffer("ELSE "); }
 "for"           { append_to_buffer("FOR "); }
 "if"            { append_to_buffer("IF "); }
+"import"        { append_to_buffer("IMPORT "); }
 "in"            { append_to_buffer("IN "); }
 "is"            { append_to_buffer("IS "); }
 "not"           { append_to_buffer("NOT "); }
