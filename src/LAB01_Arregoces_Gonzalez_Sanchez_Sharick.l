@@ -129,18 +129,28 @@ INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
 {DECIMAL}       { char temp[100]; sprintf(temp, "real=%s ", yytext); append_to_buffer(temp); }
 {INTEGER}       { char temp[100]; sprintf(temp, "entero=%s ", yytext); append_to_buffer(temp); }
 
-"=="            { append_to_buffer("comp= "); }
-"!="            { append_to_buffer("dif= "); }
-">="            { append_to_buffer("mayor_ig= "); }
-"<="            { append_to_buffer("menor_ig= "); }
+"**"            { append_to_buffer("potencia= ** "); }
+"//"            { append_to_buffer("div_entera= // "); }
+"<<"            { append_to_buffer("desp_izq= << "); }
+">>"            { append_to_buffer("desp_der= >> "); }
+"<>"            { append_to_buffer("dif_alt= <> "); }
+"=="            { append_to_buffer("comp= == "); }
+"!="            { append_to_buffer("dif= != "); }
+">="            { append_to_buffer("mayor_ig= >= "); }
+"<="            { append_to_buffer("menor_ig= <= "); }
 "=?"            { append_to_buffer("ERROR=? "); error_count++; }
-"+"             { append_to_buffer("suma=+ "); }
-"-"             { append_to_buffer("menos=- "); }
-"*"             { append_to_buffer("mult=* "); }
-"/"             { append_to_buffer("div=/ "); }
+"%"             { append_to_buffer("modulo= % "); }
+"&"             { append_to_buffer("and_bit= & "); }
+"|"             { append_to_buffer("or_bit= | "); }
+"^"             { append_to_buffer("xor_bit= ^ "); }
+"~"             { append_to_buffer("not_bit= ~ "); }
+"+"             { append_to_buffer("suma= + "); }
+"-"             { append_to_buffer("menos= - "); }
+"*"             { append_to_buffer("mult= * "); }
+"/"             { append_to_buffer("div= / "); }
 "="             { append_to_buffer("asign= = "); }
-"<"             { append_to_buffer("menor= "); }
-">"             { append_to_buffer("mayor= "); }
+"<"             { append_to_buffer("menor= < "); }
+">"             { append_to_buffer("mayor= > "); }
 
 "("             { append_to_buffer("parabre=( "); }
 ")"             { append_to_buffer("parcierr=) "); }
