@@ -62,3 +62,6 @@ analizador_lexico
 test*.l
 *_clean.l
 *_v*.l
+
+salidas/
+entradas/
