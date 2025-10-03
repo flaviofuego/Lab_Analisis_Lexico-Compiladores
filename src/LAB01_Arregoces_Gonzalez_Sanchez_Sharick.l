@@ -87,12 +87,16 @@ void print_errors() {
 
 DIGIT    [0-9]
 LETTER   [a-zA-Z]
+SIGNO    [+-]?
 ID       ({LETTER}|_)({LETTER}|{DIGIT}|_)*
-INTEGER  {DIGIT}+
-LONG     {INTEGER}L
-DECIMAL  {DIGIT}+\.{DIGIT}*|{DIGIT}*\.{DIGIT}+
-SCIENTIFIC {DECIMAL}[eE][+-]?{DIGIT}+|{INTEGER}[eE][+-]?{DIGIT}+
-IMAGINARY ({INTEGER}|{DECIMAL}|{SCIENTIFIC})j
+INTEGER  {SIGNO}{DIGIT}+
+LONG     {SIGNO}{DIGIT}+[lL]
+EXP      [eE]{INTEGER}
+FORMAT1  {DIGIT}+\.{DIGIT}*
+FORMAT2  {DIGIT}*\.{DIGIT}+
+FORMAT3  {DIGIT}+
+REAL     {SIGNO}({FORMAT1}|{FORMAT2}|{FORMAT3})({EXP})?
+IMAGINARY ({INTEGER}|{REAL})[jJ]
 STRING   \"[^\"]*\"|\'[^\']*\'
 INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
 
@@ -121,13 +125,12 @@ INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
 "True"          { append_to_buffer("TRUE "); }
 "False"         { append_to_buffer("FALSE "); }
 
-{INVALID_NUM}   { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_to_buffer(temp); error_count++; }
 {STRING}        { char temp[1000]; sprintf(temp, "cadena=%s ", yytext); append_to_buffer(temp); }
 {IMAGINARY}     { char temp[100]; sprintf(temp, "imaginario=%s ", yytext); append_to_buffer(temp); }
-{SCIENTIFIC}    { char temp[100]; sprintf(temp, "real=%s ", yytext); append_to_buffer(temp); }
+{REAL}          { char temp[100]; sprintf(temp, "real=%s ", yytext); append_to_buffer(temp); }
 {LONG}          { char temp[100]; sprintf(temp, "long=%s ", yytext); append_to_buffer(temp); }
-{DECIMAL}       { char temp[100]; sprintf(temp, "real=%s ", yytext); append_to_buffer(temp); }
 {INTEGER}       { char temp[100]; sprintf(temp, "entero=%s ", yytext); append_to_buffer(temp); }
+{INVALID_NUM}   { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_to_buffer(temp); error_count++; }
 
 "**"            { append_to_buffer("potencia= ** "); }
 "//"            { append_to_buffer("div_entera= // "); }
@@ -152,12 +155,22 @@ INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
 "<"             { append_to_buffer("menor= < "); }
 ">"             { append_to_buffer("mayor= > "); }
 
+"//="           { append_to_buffer("asign_div_entera=//= "); }
+"+="            { append_to_buffer("asign_suma=+= "); }
+"-="            { append_to_buffer("asign_menos=-= "); }
+"*="            { append_to_buffer("asign_mult=*= "); }
+"/="            { append_to_buffer("asign_div=/= "); }
+
 "("             { append_to_buffer("parabre=( "); }
 ")"             { append_to_buffer("parcierr=) "); }
 "["             { append_to_buffer("corabre=[ "); }
 "]"             { append_to_buffer("corcierr=] "); }
+"{"             { append_to_buffer("llaveabre={ "); }
+"}"             { append_to_buffer("llavecierr=} "); }
 ":"             { append_to_buffer("dospunt=: "); }
+";"             { append_to_buffer("puntocoma=; "); }
 ","             { append_to_buffer("coma=, "); }
+"."             { append_to_buffer("punto=. "); }
 
 {ID}            { char temp[100]; sprintf(temp, "id%d=%s ", get_id_number(yytext), yytext); append_to_buffer(temp); }
 
@@ -184,8 +197,7 @@ int main(int argc, char** argv) {
     printf("Procesando archivo...\n");
     yylex();
     
-    // Guardar resultado en archivo
-    save_output_to_file(input_filename);
+    save_output_to_file(input_filename); // Guardar resultado en archivo
     
     // Mostrar estadísticas en consola también
     print_identifiers();
