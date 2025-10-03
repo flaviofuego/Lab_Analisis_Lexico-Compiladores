@@ -99,7 +99,7 @@ INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
 
 %%
 
-#.*$            { /* comentarios */ }
+#.*             { /* comentarios */ }
 
 "and"           { append_to_buffer("AND "); }
 "break"         { append_to_buffer("BREAK "); }
