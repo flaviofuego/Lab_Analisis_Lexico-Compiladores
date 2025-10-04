@@ -1,4 +1,4 @@
-# 🚀 Guía de Uso - Analizador Léxico Python (Básico)
+# 🚀 Guía de Uso - Analizador Léxico Python
 
 ## 📋 Descripción
 
