@@ -122,6 +122,7 @@ INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
 "while"         { append_to_buffer("WHILE "); }
 "print"         { append_to_buffer("PRINT "); }
 "range"         { append_to_buffer("RANGE "); }
+"len"           { append_to_buffer("LEN "); }
 
 "True"          { append_to_buffer("TRUE "); }
 "False"         { append_to_buffer("FALSE "); }
@@ -178,6 +179,8 @@ INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
 ^[ \t]+         { append_to_buffer(yytext); }
 [ \t]+          { /* espacios dentro de línea */ }
 \n              { append_to_buffer("\n"); }
+\r              { /* ignorar retorno de carro */ }
+[ \t\n\r]       { /* ignorar espacios en blanco */ }
 .               { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_to_buffer(temp); error_count++; }
 
 %%
