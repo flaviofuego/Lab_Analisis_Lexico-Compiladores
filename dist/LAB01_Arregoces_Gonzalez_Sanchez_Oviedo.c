@@ -1,6 +1,6 @@
-#line 2 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.c"
+#line 2 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.c"
 
-#line 4 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.c"
+#line 4 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -556,8 +556,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
-#line 2 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 1 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
+#line 2 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -642,8 +642,8 @@ void print_identifiers() {
 void print_errors() {
     printf("\n%d Errores\n", error_count);
 }
-#line 646 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.c"
-#line 647 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.c"
+#line 646 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.c"
+#line 647 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.c"
 
 #define INITIAL 0
 
@@ -863,10 +863,10 @@ YY_DECL
 		}
 
 	{
-#line 103 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 103 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 
 
-#line 870 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.c"
+#line 870 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -926,373 +926,373 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 105 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 105 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { /* comentarios */ }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 107 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 107 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("AND "); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 108 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 108 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("BREAK "); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 109 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 109 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("CONTINUE "); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 110 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 110 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("DEF "); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 111 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 111 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("ELIF "); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 112 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 112 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("ELSE "); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 113 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 113 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("FOR "); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 114 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 114 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("IF "); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 115 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 115 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("IMPORT "); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 116 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 116 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("IN "); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 117 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 117 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("IS "); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 118 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 118 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("NOT "); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 119 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 119 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("OR "); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 120 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 120 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("PASS "); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 121 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 121 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("RETURN "); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 122 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 122 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("WHILE "); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 123 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 123 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("PRINT "); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 124 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 124 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("RANGE "); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 125 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 125 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("LEN "); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 127 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 127 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("TRUE "); }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 128 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 128 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("FALSE "); }
 	YY_BREAK
 case 23:
 /* rule 23 can match eol */
 YY_RULE_SETUP
-#line 130 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 130 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { char temp[1000]; sprintf(temp, "cadena=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 131 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 131 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { char temp[100]; sprintf(temp, "imaginario=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 132 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 132 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { char temp[100]; sprintf(temp, "real=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 133 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 133 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { char temp[100]; sprintf(temp, "long=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 134 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 134 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { char temp[100]; sprintf(temp, "entero=%s ", yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 135 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 135 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_to_buffer(temp); error_count++; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 137 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 137 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("potencia= ** "); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 138 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 138 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("div_entera= // "); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 139 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 139 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("desp_izq= << "); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 140 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 140 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("desp_der= >> "); }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 141 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 141 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("dif_alt= <> "); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 142 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 142 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("comp= == "); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 143 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 143 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("dif= != "); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 144 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 144 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("mayor_ig= >= "); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 145 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 145 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("menor_ig= <= "); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 146 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 146 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("ERROR=? "); error_count++; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 147 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 147 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("modulo= % "); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 148 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 148 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("and_bit= & "); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 149 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 149 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("or_bit= | "); }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 150 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 150 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("xor_bit= ^ "); }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 151 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 151 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("not_bit= ~ "); }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 152 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 152 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("suma= + "); }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 153 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 153 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("menos= - "); }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 154 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 154 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("mult= * "); }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 155 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 155 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("div= / "); }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 156 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 156 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("asign= = "); }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 157 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 157 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("menor= < "); }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 158 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 158 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("mayor= > "); }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 160 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 160 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("asign_div_entera=//= "); }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 161 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 161 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("asign_suma=+= "); }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 162 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 162 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("asign_menos=-= "); }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 163 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 163 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("asign_mult=*= "); }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 164 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 164 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("asign_div=/= "); }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 166 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 166 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("parabre=( "); }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 167 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 167 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("parcierr=) "); }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 168 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 168 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("corabre=[ "); }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 169 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 169 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("corcierr=] "); }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 170 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 170 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("llaveabre={ "); }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 171 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 171 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("llavecierr=} "); }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 172 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 172 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("dospunt=: "); }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 173 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 173 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("puntocoma=; "); }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 174 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 174 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("coma=, "); }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 175 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 175 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("punto=. "); }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 177 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 177 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { char temp[100]; sprintf(temp, "id%d=%s ", get_id_number(yytext), yytext); append_to_buffer(temp); }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 179 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 179 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer(yytext); }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 180 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 180 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { /* espacios dentro de línea */ }
 	YY_BREAK
 case 69:
 /* rule 69 can match eol */
 YY_RULE_SETUP
-#line 181 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 181 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { append_to_buffer("\n"); }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 182 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 182 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { /* ignorar retorno de carro */ }
 	YY_BREAK
 case 71:
 /* rule 71 can match eol */
 YY_RULE_SETUP
-#line 183 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 183 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { /* ignorar espacios en blanco */ }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 184 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 184 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_to_buffer(temp); error_count++; }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 186 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 186 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 ECHO;
 	YY_BREAK
-#line 1296 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.c"
+#line 1296 "dist/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2300,7 +2300,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 186 "src/LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l"
+#line 186 "src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l"
 
 
 int main(int argc, char** argv) {

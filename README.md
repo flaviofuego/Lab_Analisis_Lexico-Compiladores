@@ -29,7 +29,7 @@ docker build -t analizador-lexico .
 
 ```powershell
 # Compilar el analizador básico
-docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "make install-basic && ./dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick ./entradas/entrada_ejemplo.py"
+docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "make install-basic && ./dist/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo ./entradas/entrada_ejemplo.py"
 
 
 
@@ -54,7 +54,7 @@ docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "make run-basic
 echo 'def suma(a, b): return a + b' > ./entradas/prueba.py
 
 # Analizarlo
-docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "./dist/LAB01_Arregoces_Gonzalez_Sanchez_Sharick ./entradas/prueba.py"
+docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "./dist/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo ./entradas/prueba.py"
 ```
 
 ## 📁 Estructura del Proyecto
@@ -62,14 +62,14 @@ docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "./dist/LAB01_A
 ```
 Lab_Analisis_Lexico-Compiladores/
 ├── src/
-│   └── LAB01_Arregoces_Gonzalez_Sanchez_Sharick.l  # Código fuente del analizador
+│   └── LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l  # Código fuente del analizador
 ├── entradas/
 │   ├── entrada_ejemplo.py                          # Archivo de ejemplo con casos complejos
 │   └── prueba.py                                   # Archivo de prueba simple
 ├── salidas/
 │   └── entrada_ejemplo_tokens.txt                  # Resultado del análisis
 ├── dist/
-│   └── LAB01_Arregoces_Gonzalez_Sanchez_Sharick    # Ejecutable compilado
+│   └── LAB01_Arregoces_Gonzalez_Sanchez_Oviedo    # Ejecutable compilado
 ├── Makefile                                        # Scripts de compilación
 ├── Dockerfile                                      # Configuración del entorno Docker
 └── README.md                                       # Esta documentación
@@ -157,7 +157,7 @@ docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "make help"
 ## 👥 Equipo de Desarrollo
 
 **Laboratorio de Análisis Léxico - Compiladores**
-- **Estudiantes**: Arregoces, Gonzalez, Sanchez, Sharick
+- **Estudiantes**: Arregoces, Gonzalez, Sanchez, Oviedo
 - **Materia**: Compiladores
 - **Implementación**: Flex/Lex con C
 
