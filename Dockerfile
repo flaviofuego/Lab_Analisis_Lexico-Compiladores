@@ -1,4 +1,4 @@
-# Dockerfile para el entorno de análisis léxico
+# Dockerfile para el entorno de análisis léxico y sintáctico
 FROM ubuntu:20.04
 
 # Evitar preguntas interactivas durante la instalación
@@ -7,6 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Actualizar sistema e instalar herramientas necesarias
 RUN apt-get update && apt-get install -y \
     flex \
+    bison \
     gcc \
     make \
     vim \
