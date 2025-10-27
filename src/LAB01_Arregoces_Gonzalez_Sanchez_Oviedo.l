@@ -99,6 +99,7 @@ REAL     {SIGNO}({FORMAT1}|{FORMAT2}|{FORMAT3})({EXP})?
 IMAGINARY ({INTEGER}|{REAL})[jJ]
 STRING   \"[^\"]*\"|\'[^\']*\'
 INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
+INVALID_ID  ({LETTER}|_)({LETTER}|{DIGIT}|_)*[^a-zA-Z0-9_\s\n\t\r()[\]{};:,."'=+\-*/%<>!&|^~]+({LETTER}|{DIGIT}|_|[^a-zA-Z0-9_\s\n\t\r()[\]{};:,."'=+\-*/%<>!&|^~])+
 
 %%
 
@@ -133,6 +134,7 @@ INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
 {LONG}          { char temp[100]; sprintf(temp, "long=%s ", yytext); append_to_buffer(temp); }
 {INTEGER}       { char temp[100]; sprintf(temp, "entero=%s ", yytext); append_to_buffer(temp); }
 {INVALID_NUM}   { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_to_buffer(temp); error_count++; }
+{INVALID_ID}    { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_to_buffer(temp); error_count++; }
 
 "**"            { append_to_buffer("potencia= ** "); }
 "//"            { append_to_buffer("div_entera= // "); }
