@@ -1,36 +1,34 @@
-DEF id1=eval parabre=( id2=xi coma=, id3=exp parcierr=) dospunt=: 
-    id4=ans asign= = FALSE 
-    FOR id5=i IN RANGE parabre=( LEN parabre=( id3=exp parcierr=) parcierr=) dospunt=: 
-        id6=part ERROR=? TRUE 
-        FOR id7=j IN RANGE parabre=( LEN parabre=( id3=exp corabre=[ id5=i corcierr=] parcierr=) parcierr=) dospunt=: 
-            id6=part asign= = id6=part AND id2=xi corabre=[ id3=exp corabre=[ id5=i corcierr=] corabre=[ id7=j corcierr=] corcierr=] 
-        id4=ans asign= = id4=ans OR id6=part 
-    RETURN id4=ans 
-WHILE real=2 mult= * id5=i menor_ig= <= long=40000L 
-    id8=h asign= = real=3.4e-5 suma= + imaginario=5j 
-    IF id5=i comp= == real=0 dospunt=: 
+ERROR=def eval parabre=( id1=xi coma=, id2=exp parcierr=) dospunt=: 
+    id3=ans asign= = FALSE 
+    ERROR=for i in range parabre=( LEN parabre=( id2=exp parcierr=) parcierr=) dospunt=: 
+        id4=part ERROR=? TRUE 
+        ERROR=for j in range parabre=( LEN parabre=( id2=exp corabre=[ id5=i corcierr=] parcierr=) parcierr=) dospunt=: 
+            id4=part asign= = ERROR=part and xi corabre=[ id2=exp corabre=[ id5=i corcierr=] corabre=[ id6=j corcierr=] corcierr=] 
+        id3=ans asign= = ERROR=ans or part 
+    ERROR=return ans 
+ERROR=while 2 mult= * id5=i menor_ig= <= long=40000L 
+    id7=h asign= = real=3.4e-5 suma= + imaginario=5j 
+    ERROR=if i  comp= == real=0 dospunt=: 
         BREAK 
-DEF id9=otra_fun parabre=( parcierr=) dospunt=: 
+ERROR=def otra_fun parabre=( parcierr=) dospunt=: 
     PASS 
-PRINT parabre=( cadena='Esta es la respuesta' coma=, id10=con_123 coma=, cadena='y la expresión ' coma=, real=3 mult= * id5=i real=+5 mult= * parabre=( real=7 menos= - id11=x parcierr=) parcierr=) 
-id12=table asign= = corabre=[ corcierr=] 
-id13=y asign= = ERROR=123ABC 
+PRINT parabre=( cadena='Esta es la respuesta' coma=, id8=con_123 coma=, cadena='y la expresión ' coma=, real=3 mult= * id5=i real=+5 mult= * parabre=( real=7 menos= - id9=x parcierr=) parcierr=) 
+id10=table asign= = corabre=[ corcierr=] 
+id11=y asign= = ERROR=123ABC 
 
 
-13 Identificadores
+11 Identificadores
 
-Id1=eval
-Id2=xi
-Id3=exp
-Id4=ans
+Id1=xi
+Id2=exp
+Id3=ans
+Id4=part
 Id5=i
-Id6=part
-Id7=j
-Id8=h
-Id9=otra_fun
-Id10=con_123
-Id11=x
-Id12=table
-Id13=y
+Id6=j
+Id7=h
+Id8=con_123
+Id9=x
+Id10=table
+Id11=y
 
-2 Errores
+11 Errores

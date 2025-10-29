@@ -1,15 +1,9 @@
 %{
-#include <stdio.h>
+#include "y.tab.h"
 #include <string.h>
 #include <stdlib.h>
-#include "y.tab.h"
 
-extern int current_line;
-
-void update_line() {
-    current_line = yylineno;
-}
-
+extern int yylineno;
 %}
 
 %option yylineno
@@ -20,98 +14,101 @@ SIGNO    [+-]?
 ID       ({LETTER}|_)({LETTER}|{DIGIT}|_)*
 INTEGER  {SIGNO}{DIGIT}+
 LONG     {SIGNO}{DIGIT}+[lL]
-EXP      [eE]{INTEGER}
+EXP      [eE]{SIGNO}{DIGIT}+
 FORMAT1  {DIGIT}+\.{DIGIT}*
 FORMAT2  {DIGIT}*\.{DIGIT}+
-FORMAT3  {DIGIT}+
-REAL     {SIGNO}({FORMAT1}|{FORMAT2}|{FORMAT3})({EXP})?
+REAL     {SIGNO}({FORMAT1}|{FORMAT2})({EXP})?
 IMAGINARY ({INTEGER}|{REAL})[jJ]
 STRING   \"[^\"]*\"|\'[^\']*\'
+INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
+INVALID_ID  ({LETTER}|_)({LETTER}|{DIGIT}|_)*[^a-zA-Z0-9_\s\n\t\r()[\]{};:,."'=+\-*/%<>!&|^~]+({LETTER}|{DIGIT}|_|[^a-zA-Z0-9_\s\n\t\r()[\]{};:,."'=+\-*/%<>!&|^~])+
 
 %%
 
 #.*             { /* comentarios */ }
 
-"and"           { update_line(); return AND; }
-"break"         { update_line(); return BREAK; }
-"continue"      { update_line(); return CONTINUE; }
-"def"           { update_line(); return DEF; }
-"elif"          { update_line(); return ELIF; }
-"else"          { update_line(); return ELSE; }
-"for"           { update_line(); return FOR; }
-"if"            { update_line(); return IF; }
-"import"        { update_line(); return IMPORT; }
-"in"            { update_line(); return IN; }
-"is"            { update_line(); return IS; }
-"not"           { update_line(); return NOT; }
-"or"            { update_line(); return OR; }
-"pass"          { update_line(); return PASS; }
-"return"        { update_line(); return RETURN; }
-"while"         { update_line(); return WHILE; }
-"print"         { update_line(); return PRINT; }
-"range"         { update_line(); return RANGE; }
-"len"           { update_line(); return LEN; }
+"and"           { yylval.str = strdup(yytext); return AND; }
+"break"         { yylval.str = strdup(yytext); return BREAK; }
+"continue"      { yylval.str = strdup(yytext); return CONTINUE; }
+"def"           { yylval.str = strdup(yytext); return DEF; }
+"elif"          { yylval.str = strdup(yytext); return ELIF; }
+"else"          { yylval.str = strdup(yytext); return ELSE; }
+"for"           { yylval.str = strdup(yytext); return FOR; }
+"if"            { yylval.str = strdup(yytext); return IF; }
+"import"        { yylval.str = strdup(yytext); return IMPORT; }
+"in"            { yylval.str = strdup(yytext); return IN; }
+"is"            { yylval.str = strdup(yytext); return IS; }
+"not"           { yylval.str = strdup(yytext); return NOT; }
+"or"            { yylval.str = strdup(yytext); return OR; }
+"pass"          { yylval.str = strdup(yytext); return PASS; }
+"return"        { yylval.str = strdup(yytext); return RETURN; }
+"while"         { yylval.str = strdup(yytext); return WHILE; }
+"print"         { yylval.str = strdup(yytext); return PRINT; }
+"range"         { yylval.str = strdup(yytext); return RANGE; }
+"len"           { yylval.str = strdup(yytext); return LEN; }
 
-"True"          { update_line(); return TRUE; }
-"False"         { update_line(); return FALSE; }
+"True"          { yylval.str = strdup(yytext); return TRUE; }
+"False"         { yylval.str = strdup(yytext); return FALSE; }
 
-{STRING}        { update_line(); yylval.strval = strdup(yytext); return CADENA; }
-{IMAGINARY}     { update_line(); yylval.floatval = atof(yytext); return IMAGINARIO; }
-{REAL}          { update_line(); yylval.floatval = atof(yytext); return REAL; }
-{LONG}          { update_line(); yylval.intval = atoi(yytext); return LONG; }
-{INTEGER}       { update_line(); yylval.intval = atoi(yytext); return ENTERO; }
+{STRING}        { yylval.str = strdup(yytext); return STRING; }
+{IMAGINARY}     { yylval.str = strdup(yytext); return IMAGINARY; }
+{LONG}          { yylval.str = strdup(yytext); return LONG; }
+{REAL}          { yylval.str = strdup(yytext); return REAL; }
+{INTEGER}       { yylval.str = strdup(yytext); return INTEGER; }
+{INVALID_NUM}   { yylval.str = strdup(yytext); return ERROR_TOKEN; }
+{INVALID_ID}    { yylval.str = strdup(yytext); return ERROR_TOKEN; }
 
-"**"            { update_line(); return POTENCIA; }
-"//"            { update_line(); return DIV_ENTERA; }
-"<<"            { update_line(); return DESP_IZQ; }
-">>"            { update_line(); return DESP_DER; }
-"<>"            { update_line(); return DIF_ALT; }
-"=="            { update_line(); return COMP; }
-"!="            { update_line(); return DIF; }
-">="            { update_line(); return MAYOR_IG; }
-"<="            { update_line(); return MENOR_IG; }
-"=?"            { update_line(); return ERROR; }
+"**"            { return POW; }
+"//"            { return FLOORDIV; }
+"<<"            { return LSHIFT; }
+">>"            { return RSHIFT; }
+"<>"            { return NOTEQUAL2; }
+"=="            { return EQUAL; }
+"!="            { return NOTEQUAL; }
+">="            { return GREATEREQUAL; }
+"<="            { return LESSEQUAL; }
+"=?"            { return ERROR_TOKEN; }
+"%"             { return MOD; }
+"&"             { return BITAND; }
+"|"             { return BITOR; }
+"^"             { return BITXOR; }
+"~"             { return BITNOT; }
+"+"             { return PLUS; }
+"-"             { return MINUS; }
+"*"             { return TIMES; }
+"/"             { return DIVIDE; }
+"="             { return ASSIGN; }
+"<"             { return LESS; }
+">"             { return GREATER; }
 
-"//="           { update_line(); return ASIGN_DIV_ENTERA; }
-"+="            { update_line(); return ASIGN_SUMA; }
-"-="            { update_line(); return ASIGN_MENOS; }
-"*="            { update_line(); return ASIGN_MULT; }
-"/="            { update_line(); return ASIGN_DIV; }
+"//="           { return FLOORDIVASSIGN; }
+"+="            { return PLUSASSIGN; }
+"-="            { return MINUSASSIGN; }
+"*="            { return TIMESASSIGN; }
+"/="            { return DIVIDEASSIGN; }
 
-"%"             { update_line(); return MODULO; }
-"&"             { update_line(); return AND_BIT; }
-"|"             { update_line(); return OR_BIT; }
-"^"             { update_line(); return XOR_BIT; }
-"~"             { update_line(); return NOT_BIT; }
-"+"             { update_line(); return SUMA; }
-"-"             { update_line(); return MENOS; }
-"*"             { update_line(); return MULT; }
-"/"             { update_line(); return DIV; }
-"="             { update_line(); return ASIGN; }
-"<"             { update_line(); return MENOR; }
-">"             { update_line(); return MAYOR; }
+"("             { return LPAREN; }
+")"             { return RPAREN; }
+"["             { return LBRACKET; }
+"]"             { return RBRACKET; }
+"{"             { return LBRACE; }
+"}"             { return RBRACE; }
+":"             { return COLON; }
+";"             { return SEMICOLON; }
+","             { return COMMA; }
+"."             { return DOT; }
 
-"("             { update_line(); return PARABRE; }
-")"             { update_line(); return PARCIERR; }
-"["             { update_line(); return CORABRE; }
-"]"             { update_line(); return CORCIERR; }
-"{"             { update_line(); return LLAVEABRE; }
-"}"             { update_line(); return LLAVECIERR; }
-":"             { update_line(); return DOSPUNT; }
-";"             { update_line(); return PUNTOCOMA; }
-","             { update_line(); return COMA; }
-"."             { update_line(); return PUNTO; }
+{ID}            { yylval.str = strdup(yytext); return ID; }
 
-{ID}            { update_line(); yylval.strval = strdup(yytext); return ID; }
-
-^[ \t]+         { /* indentación */ }
+^[ \t]+         { /* mantener indentación */ }
 [ \t]+          { /* espacios */ }
-\n              { update_line(); }
+\n              { return NEWLINE; }
 \r              { /* ignorar retorno de carro */ }
-.               { update_line(); return ERROR; }
+
+.               { return ERROR_TOKEN; }
 
 %%
 
-int yywrap() {
+int yywrap(void) {
     return 1;
 }

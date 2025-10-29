@@ -55,10 +55,9 @@ $(EXECUTABLE): $(LEX_SOURCE)
 # Compilar analizador sintáctico
 $(SYNTAX_EXECUTABLE): $(YACC_SOURCE) $(LEX_SYNTAX_SOURCE)
 	@mkdir -p dist
-	@bison -d -o $(YACC_OUTPUT) $(YACC_SOURCE) 2>/dev/null || yacc -d $(YACC_SOURCE) && mv y.tab.c $(YACC_OUTPUT) && mv y.tab.h $(YACC_HEADER)
+	@bison -d -o $(YACC_OUTPUT) $(YACC_SOURCE) 2>/dev/null
 	@flex -o $(LEX_SYNTAX_OUTPUT) $(LEX_SYNTAX_SOURCE) 2>/dev/null
-	@$(CC) $(CFLAGS) $(YACC_OUTPUT) $(LEX_SYNTAX_OUTPUT) -o $(SYNTAX_EXECUTABLE) $(LDFLAGS) 2>/dev/null || \
-		$(CC) -Wno-implicit-function-declaration $(YACC_OUTPUT) $(LEX_SYNTAX_OUTPUT) -o $(SYNTAX_EXECUTABLE) $(LDFLAGS)
+	@$(CC) -Wno-implicit-function-declaration $(YACC_OUTPUT) $(LEX_SYNTAX_OUTPUT) -o $(SYNTAX_EXECUTABLE) -lfl 2>/dev/null
 
 # ============================================================
 # COMANDOS DE INSTALACIÓN/COMPILACIÓN
@@ -147,46 +146,8 @@ completo: $(EXECUTABLE) $(SYNTAX_EXECUTABLE)
 
 # Alias para compatibilidad con versión anterior
 run-basic: lexico
-run-basic-file: lexico
 run-syntax: sintactico
-run-syntax-file: sintactico
 run-all: completo
-run-all-file: completo
-
-# ============================================================
-# COMANDOS DE PRUEBAS RÁPIDAS
-# ============================================================
-
-# Probar con archivo de ejemplo
-demo: $(EXECUTABLE) $(SYNTAX_EXECUTABLE)
-	@$(MAKE) completo FILE=entradas/entrada_ejemplo.py
-
-# Probar archivo sin errores
-test-correcto: $(EXECUTABLE) $(SYNTAX_EXECUTABLE)
-	@$(MAKE) completo FILE=entradas/prueba_correcta.py
-
-# Probar archivo con errores sintácticos
-test-errores: $(SYNTAX_EXECUTABLE)
-	@$(MAKE) sintactico FILE=entradas/prueba2.py
-
-# Ejecutar todas las pruebas
-test-all: $(EXECUTABLE) $(SYNTAX_EXECUTABLE)
-	@echo "$(CYAN)╔════════════════════════════════════════════╗$(NC)"
-	@echo "$(CYAN)║          EJECUTANDO TODAS LAS PRUEBAS      ║$(NC)"
-	@echo "$(CYAN)╚════════════════════════════════════════════╝$(NC)"
-	@echo ""
-	@echo "$(YELLOW)📝 Prueba 1: Archivo con error léxico$(NC)"
-	@$(MAKE) lexico FILE=entradas/prueba1.py
-	@echo ""
-	@echo "$(YELLOW)📝 Prueba 2: Archivo con errores sintácticos$(NC)"
-	@$(MAKE) sintactico FILE=entradas/prueba2.py
-	@echo ""
-	@echo "$(YELLOW)📝 Prueba 3: Archivo sin errores$(NC)"
-	@$(MAKE) completo FILE=entradas/prueba_correcta.py
-
-# ============================================================
-# COMANDOS DE LIMPIEZA
-# ============================================================
 
 # Limpiar archivos compilados
 clean:
