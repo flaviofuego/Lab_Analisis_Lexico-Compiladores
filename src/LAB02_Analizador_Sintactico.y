@@ -71,18 +71,29 @@ void save_syntax_output(const char* input_filename) {
 %token COLON SEMICOLON COMMA DOT
 %token NEWLINE
 
+/* Indentación */
+%token INDENT DEDENT
+
 %start programa
 
 %%
 
 programa:
     /* vacío */
-    | programa linea
+    | programa statement
     ;
 
-linea:
+statement:
+    simple_stmt
+    | compound_stmt
+    ;
+
+simple_stmt:
     asignacion NEWLINE {
         /* Asignación válida, no mostrar nada */
+    }
+    | PASS NEWLINE {
+        /* pass statement */
     }
     | NEWLINE {
         /* línea vacía */
@@ -98,6 +109,33 @@ linea:
         error_count++;
         yyerrok;
     }
+    ;
+
+compound_stmt:
+    funcdef
+    ;
+
+funcdef:
+    DEF ID LPAREN RPAREN COLON NEWLINE suite {
+        /* función sin parámetros */
+    }
+    | DEF ID LPAREN parameters RPAREN COLON NEWLINE suite {
+        /* función con parámetros */
+    }
+    ;
+
+parameters:
+    ID
+    | parameters COMMA ID
+    ;
+
+suite:
+    INDENT statements DEDENT
+    ;
+
+statements:
+    statement
+    | statements statement
     ;
 
 asignacion:

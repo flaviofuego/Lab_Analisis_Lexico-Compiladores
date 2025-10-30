@@ -99,7 +99,7 @@ REAL     {SIGNO}({FORMAT1}|{FORMAT2}|{FORMAT3})({EXP})?
 IMAGINARY ({INTEGER}|{REAL})[jJ]
 STRING   \"[^\"]*\"|\'[^\']*\'
 INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
-INVALID_ID  ({LETTER}|_)({LETTER}|{DIGIT}|_)*[^a-zA-Z0-9_\s\n\t\r()[\]{};:,."'=+\-*/%<>!&|^~]+({LETTER}|{DIGIT}|_|[^a-zA-Z0-9_\s\n\t\r()[\]{};:,."'=+\-*/%<>!&|^~])+
+INVALID_ID  ({LETTER}|_)({LETTER}|{DIGIT}|_)*[$@#!?`\\|&]{1}({LETTER}|{DIGIT}|_|[$@#!?`\\|&])*
 
 %%
 
