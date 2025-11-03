@@ -113,6 +113,9 @@ simple_stmt:
     | call_function NEWLINE {
         /* llamada a función como statement */
     }
+    | IMPORT ID NEWLINE {
+        /* import statement */
+    }
     | NEWLINE {
         /* línea vacía */
     }
@@ -288,7 +291,7 @@ expresion_primaria:
     | call_range
     | call_len
     | lista
-    | ID LBRACKET expresion_booleana RBRACKET
+    | expresion_primaria LBRACKET expresion_booleana RBRACKET
     ;
 
 call_function:
@@ -340,7 +343,9 @@ asignacion:
 
 identificadores:
     ID
+    | expresion_primaria
     | identificadores COMMA ID
+    | identificadores COMMA expresion_primaria
     ;
 
 expresiones:
