@@ -71,8 +71,8 @@ void save_syntax_output(const char* input_filename) {
 %token COLON SEMICOLON COMMA DOT
 %token NEWLINE
 
-/* Indentación */
-%token INDENT DEDENT
+/* Indentación con TABs */
+%token TAB
 
 %start programa
 
@@ -95,11 +95,29 @@ simple_stmt:
     | PASS NEWLINE {
         /* pass statement */
     }
+    | BREAK NEWLINE {
+        /* break statement */
+    }
+    | CONTINUE NEWLINE {
+        /* continue statement */
+    }
+    | RETURN NEWLINE {
+        /* return sin valor */
+    }
+    | RETURN expresion_booleana NEWLINE {
+        /* return con valor */
+    }
+    | print_stmt NEWLINE {
+        /* print statement */
+    }
+    | call_function NEWLINE {
+        /* llamada a función como statement */
+    }
     | NEWLINE {
         /* línea vacía */
     }
     | error NEWLINE {
-        char temp[100];
+        char temp[200];
         // El error ocurrió en la línea anterior al NEWLINE actual
         int err_line = yylineno - 1;
         if (err_line < 1) err_line = 1;
@@ -111,8 +129,16 @@ simple_stmt:
     }
     ;
 
+print_stmt:
+    PRINT LPAREN RPAREN
+    | PRINT LPAREN argumentos RPAREN
+    ;
+
 compound_stmt:
     funcdef
+    | ifstmt
+    | forstmt
+    | whilestmt
     ;
 
 funcdef:
@@ -124,13 +150,183 @@ funcdef:
     }
     ;
 
+ifstmt:
+    IF expresion_booleana COLON NEWLINE suite elif_list else_opt {
+        /* if completo con posibles elif y else */
+    }
+    ;
+
+elif_list:
+    /* vacío - sin elif */
+    | elif_list opt_newlines opt_tabs ELIF expresion_booleana COLON NEWLINE suite
+    ;
+
+else_opt:
+    /* vacío - sin else */
+    | opt_newlines opt_tabs ELSE COLON NEWLINE suite
+    ;
+
+opt_tabs:
+    /* vacío - sin tabs */
+    | tabs
+    ;
+
+opt_newlines:
+    /* vacío - sin newlines */
+    | opt_newlines NEWLINE
+    ;
+
+forstmt:
+    FOR ID IN secuencia COLON NEWLINE suite {
+        /* ciclo for: for id in secuencia: */
+    }
+    ;
+
+secuencia:
+    ID
+    | call_range
+    | lista
+    | STRING
+    ;
+
+call_range:
+    RANGE LPAREN expresion_booleana RPAREN
+    | RANGE LPAREN expresion_booleana COMMA expresion_booleana RPAREN
+    | RANGE LPAREN expresion_booleana COMMA expresion_booleana COMMA expresion_booleana RPAREN
+    ;
+
+lista:
+    LBRACKET RBRACKET
+    | LBRACKET lista_elementos RBRACKET
+    ;
+
+lista_elementos:
+    expresion_booleana
+    | lista_elementos COMMA expresion_booleana
+    ;
+
+whilestmt:
+    WHILE expresion_booleana COLON NEWLINE suite {
+        /* ciclo while: while expresion: */
+    }
+    ;
+
+expresion_booleana:
+    expresion_or
+    ;
+
+expresion_or:
+    expresion_and
+    | expresion_or OR expresion_and
+    ;
+
+expresion_and:
+    expresion_not
+    | expresion_and AND expresion_not
+    ;
+
+expresion_not:
+    expresion_comparacion
+    | NOT expresion_not
+    ;
+
+expresion_comparacion:
+    expresion_aritmetica
+    | expresion_aritmetica EQUAL expresion_aritmetica
+    | expresion_aritmetica NOTEQUAL expresion_aritmetica
+    | expresion_aritmetica NOTEQUAL2 expresion_aritmetica
+    | expresion_aritmetica LESS expresion_aritmetica
+    | expresion_aritmetica GREATER expresion_aritmetica
+    | expresion_aritmetica LESSEQUAL expresion_aritmetica
+    | expresion_aritmetica GREATEREQUAL expresion_aritmetica
+    | expresion_aritmetica IS expresion_aritmetica
+    | expresion_aritmetica IS NOT expresion_aritmetica
+    | expresion_aritmetica IN expresion_aritmetica
+    | expresion_aritmetica NOT IN expresion_aritmetica
+    ;
+
+expresion_aritmetica:
+    expresion_termino
+    | expresion_aritmetica PLUS expresion_termino
+    | expresion_aritmetica MINUS expresion_termino
+    | expresion_aritmetica BITOR expresion_termino
+    | expresion_aritmetica BITXOR expresion_termino
+    ;
+
+expresion_termino:
+    expresion_factor
+    | expresion_termino TIMES expresion_factor
+    | expresion_termino DIVIDE expresion_factor
+    | expresion_termino FLOORDIV expresion_factor
+    | expresion_termino MOD expresion_factor
+    | expresion_termino BITAND expresion_factor
+    ;
+
+expresion_factor:
+    expresion_potencia
+    | PLUS expresion_factor
+    | MINUS expresion_factor
+    | BITNOT expresion_factor
+    ;
+
+expresion_potencia:
+    expresion_primaria
+    | expresion_primaria POW expresion_factor
+    ;
+
+expresion_primaria:
+    ID
+    | INTEGER
+    | REAL
+    | LONG
+    | IMAGINARY
+    | STRING
+    | TRUE
+    | FALSE
+    | LPAREN expresion_booleana RPAREN
+    | call_function
+    | call_range
+    | call_len
+    | lista
+    | ID LBRACKET expresion_booleana RBRACKET
+    ;
+
+call_function:
+    ID LPAREN RPAREN
+    | ID LPAREN argumentos RPAREN
+    ;
+
+call_len:
+    LEN LPAREN expresion_booleana RPAREN
+    ;
+
+argumentos:
+    expresion_booleana
+    | argumentos COMMA expresion_booleana
+    ;
+
 parameters:
     ID
     | parameters COMMA ID
     ;
 
 suite:
-    INDENT statements DEDENT
+    suite_statements opt_newlines
+    ;
+
+suite_statements:
+    indented_statement
+    | suite_statements indented_statement
+    ;
+
+indented_statement:
+    tabs statement
+    | tabs compound_stmt
+    ;
+
+tabs:
+    TAB
+    | tabs TAB
     ;
 
 statements:
@@ -153,14 +349,7 @@ expresiones:
     ;
 
 expresion:
-    ID
-    | INTEGER
-    | REAL
-    | LONG
-    | IMAGINARY
-    | STRING
-    | TRUE
-    | FALSE
+    expresion_booleana
     ;
 
 %%

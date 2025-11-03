@@ -11,6 +11,7 @@ int indent_stack_ptr = 0;
 int current_indent = 0;
 int pending_dedents = 0;
 int at_line_start = 1;
+int line_indent = 0;
 
 void push_indent(int level) {
     indent_stack[indent_stack_ptr++] = level;
@@ -48,22 +49,26 @@ STRING   \"[^\"]*\"|\'[^\']*\'
 INVALID_NUM {DIGIT}+[A-KM-Za-ik-z]+({LETTER}|{DIGIT})*
 INVALID_ID  ({LETTER}|_)({LETTER}|{DIGIT}|_)*[$@#!?`\\|&]{1}({LETTER}|{DIGIT}|_|[$@#!?`\\|&])*
 
-%x INDENT_STATE
-
 %%
 
     /* Manejo de indentación al inicio de línea */
 ^[ \t]*\n       { at_line_start = 1; /* línea vacía, ignorar */ }
 
-^[ \t]+         {
+^[ \t]*[^ \t\n] {
     if (at_line_start) {
         at_line_start = 0;
+        
+        // Calcular espacios de indentación (excluir el último carácter)
         int spaces = 0;
-        for (int i = 0; i < yyleng; i++) {
+        for (int i = 0; i < yyleng - 1; i++) {
             if (yytext[i] == '\t') spaces += 4;  // tab = 4 espacios
             else spaces++;
         }
         
+        // Devolver el último carácter para que sea procesado por otras reglas
+        yyless(yyleng - 1);
+        
+        // Manejar cambios de indentación
         if (spaces > peek_indent()) {
             // Incremento de indentación: INDENT
             push_indent(spaces);
@@ -76,31 +81,13 @@ INVALID_ID  ({LETTER}|_)({LETTER}|{DIGIT}|_)*[$@#!?`\\|&]{1}({LETTER}|{DIGIT}|_|
             }
             if (pending_dedents > 0) {
                 pending_dedents--;
-                unput('\n');  // Devolver el newline para procesarlo después
-                for (int i = yyleng - 1; i >= 0; i--) {
-                    unput(yytext[i]);  // Devolver la indentación
-                }
                 return DEDENT;
             }
         }
-        // Si spaces == peek_indent(), continuar normalmente
-    }
-}
-
-^[^ \t\n]       { 
-    at_line_start = 0;
-    unput(yytext[0]);
-    // Sin indentación al inicio de línea
-    if (peek_indent() > 0) {
-        // Necesitamos generar DEDENTs hasta llegar a nivel 0
-        while (indent_stack_ptr > 0) {
-            pop_indent();
-            pending_dedents++;
-        }
-        if (pending_dedents > 0) {
-            pending_dedents--;
-            return DEDENT;
-        }
+        // Si spaces == peek_indent(), continuar normalmente (no retornar nada, seguir leyendo)
+    } else {
+        // No estamos al inicio de línea, devolver todo para procesamiento normal
+        yyless(0);
     }
 }
 
@@ -181,14 +168,13 @@ INVALID_ID  ({LETTER}|_)({LETTER}|{DIGIT}|_)*[$@#!?`\\|&]{1}({LETTER}|{DIGIT}|_|
 
 [ \t]+          { /* espacios en medio de línea */ }
 
-\n              { 
+\n              {
     at_line_start = 1;
     if (pending_dedents > 0) {
         pending_dedents--;
-        unput('\n');
         return DEDENT;
     }
-    return NEWLINE; 
+    return NEWLINE;
 }
 
 \r              { /* ignorar retorno de carro */ }

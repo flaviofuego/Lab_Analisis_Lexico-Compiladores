@@ -14,11 +14,16 @@ COMPILE_FILE = dist/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.c
 
 # Analizador Sintáctico
 YACC_SOURCE = src/LAB02_Analizador_Sintactico.y
-LEX_SYNTAX_SOURCE = src/LAB02_Lexico_Sintactico.l
+LEX_SYNTAX_SOURCE = src/LAB02_Lexico_Para_Sintactico.l
 SYNTAX_EXECUTABLE = dist/LAB02_Analizador_Sintactico
-YACC_OUTPUT = dist/y.tab.c
-YACC_HEADER = dist/y.tab.h
+YACC_OUTPUT = dist/LAB02_Analizador_Sintactico.tab.c
+YACC_HEADER = dist/LAB02_Analizador_Sintactico.tab.h
 LEX_SYNTAX_OUTPUT = dist/lex.yy.c
+
+# Visualizador de Tokens
+VISUALIZADOR_SOURCE = src/visualizador_tokens.l
+VISUALIZADOR_EXECUTABLE = dist/visualizador_tokens
+VISUALIZADOR_OUTPUT = dist/visualizador_tokens.c
 
 # Archivos de entrada por defecto
 INPUT_FILE = entradas/entrada_ejemplo.py
@@ -57,7 +62,13 @@ $(SYNTAX_EXECUTABLE): $(YACC_SOURCE) $(LEX_SYNTAX_SOURCE)
 	@mkdir -p dist
 	@bison -d -o $(YACC_OUTPUT) $(YACC_SOURCE) 2>/dev/null
 	@flex -o $(LEX_SYNTAX_OUTPUT) $(LEX_SYNTAX_SOURCE) 2>/dev/null
-	@$(CC) -Wno-implicit-function-declaration $(YACC_OUTPUT) $(LEX_SYNTAX_OUTPUT) -o $(SYNTAX_EXECUTABLE) -lfl 2>/dev/null
+	@$(CC) -Wno-implicit-function-declaration -Idist $(YACC_OUTPUT) $(LEX_SYNTAX_OUTPUT) -o $(SYNTAX_EXECUTABLE) -lfl 2>/dev/null
+
+# Compilar visualizador de tokens
+$(VISUALIZADOR_EXECUTABLE): $(VISUALIZADOR_SOURCE)
+	@mkdir -p dist
+	@flex -o $(VISUALIZADOR_OUTPUT) $(VISUALIZADOR_SOURCE) 2>/dev/null
+	@$(CC) $(CFLAGS) $(VISUALIZADOR_OUTPUT) -o $(VISUALIZADOR_EXECUTABLE) -lfl 2>/dev/null
 
 # ============================================================
 # COMANDOS DE INSTALACIÓN/COMPILACIÓN
@@ -75,6 +86,9 @@ build: check-tools
 	@echo "$(YELLOW)📦 Compilando analizador sintáctico...$(NC)"
 	@$(MAKE) $(SYNTAX_EXECUTABLE) && echo "$(GREEN)✅ Analizador sintáctico compilado$(NC)" || echo "$(RED)❌ Error al compilar sintáctico$(NC)"
 	@echo ""
+	@echo "$(YELLOW)📦 Compilando visualizador de tokens...$(NC)"
+	@$(MAKE) $(VISUALIZADOR_EXECUTABLE) && echo "$(GREEN)✅ Visualizador compilado$(NC)" || echo "$(RED)❌ Error al compilar visualizador$(NC)"
+	@echo ""
 	@echo "$(GREEN)╔════════════════════════════════════════════╗$(NC)"
 	@echo "$(GREEN)║     COMPILACIÓN COMPLETADA EXITOSAMENTE    ║$(NC)"
 	@echo "$(GREEN)╚════════════════════════════════════════════╝$(NC)"
@@ -85,6 +99,8 @@ install-basic: $(EXECUTABLE)
 	@echo "$(GREEN)✅ Analizador léxico compilado exitosamente$(NC)"
 install-syntax: $(SYNTAX_EXECUTABLE)
 	@echo "$(GREEN)✅ Analizador sintáctico compilado exitosamente$(NC)"
+install-visualizador: $(VISUALIZADOR_EXECUTABLE)
+	@echo "$(GREEN)✅ Visualizador de tokens compilado exitosamente$(NC)"
 
 # Verificar herramientas necesarias
 check-tools:
@@ -120,6 +136,14 @@ sintactico: $(SYNTAX_EXECUTABLE)
 	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 	@./$(SYNTAX_EXECUTABLE) $(FILE)
 
+# Ejecutar visualizador de tokens
+visualizar: $(VISUALIZADOR_EXECUTABLE)
+	@if [ ! -f "$(FILE)" ]; then \
+		echo "$(RED)❌ Error: El archivo $(FILE) no existe$(NC)"; \
+		exit 1; \
+	fi
+	@./$(VISUALIZADOR_EXECUTABLE) $(FILE)
+
 # Ejecutar ambos análisis
 completo: $(EXECUTABLE) $(SYNTAX_EXECUTABLE)
 	@if [ ! -f "$(FILE)" ]; then \
@@ -154,6 +178,8 @@ clean:
 	@echo "$(YELLOW)🧹 Limpiando archivos compilados...$(NC)"
 	@rm -f $(COMPILE_FILE) $(EXECUTABLE) 2>/dev/null
 	@rm -f $(YACC_OUTPUT) $(YACC_HEADER) $(LEX_SYNTAX_OUTPUT) $(SYNTAX_EXECUTABLE) 2>/dev/null
+	@rm -f $(VISUALIZADOR_OUTPUT) $(VISUALIZADOR_EXECUTABLE) 2>/dev/null
+	@rm -f src/LAB02_Analizador_Sintactico.tab.h 2>/dev/null
 	@echo "$(GREEN)✅ Limpieza completada$(NC)"
 
 # Limpiar todo (incluyendo salidas)
@@ -172,14 +198,16 @@ help:
 	@echo "$(CYAN)╚════════════════════════════════════════════════════════════╝$(NC)"
 	@echo ""
 	@echo "$(YELLOW)📦 COMPILACIÓN:$(NC)"
-	@echo "  make build                    - Compilar ambos analizadores"
-	@echo "  make install                  - Alias de build"
-	@echo "  make install-basic            - Compilar solo analizador léxico"
-	@echo "  make install-syntax           - Compilar solo analizador sintáctico"
+	@echo "  make build                       - Compilar todos los analizadores"
+	@echo "  make install                     - Alias de build"
+	@echo "  make install-basic               - Compilar solo analizador léxico"
+	@echo "  make install-syntax              - Compilar solo analizador sintáctico"
+	@echo "  make install-visualizador        - Compilar solo visualizador de tokens"
 	@echo ""
 	@echo "$(YELLOW)🚀 EJECUCIÓN (usar con FILE=archivo.py):$(NC)"
 	@echo "  make lexico FILE=archivo.py      - Ejecutar análisis léxico"
 	@echo "  make sintactico FILE=archivo.py  - Ejecutar análisis sintáctico"
+	@echo "  make visualizar FILE=archivo.py  - Visualizar tokens (con TABs, colores)"
 	@echo "  make completo FILE=archivo.py    - Ejecutar ambos análisis"
 	@echo ""
 	@echo "$(YELLOW)🧪 PRUEBAS RÁPIDAS:$(NC)"
@@ -224,8 +252,8 @@ help:
 # PHONY TARGETS
 # ============================================================
 
-.PHONY: help build install install-basic install-syntax check-tools \
-        lexico sintactico completo \
+.PHONY: help build install install-basic install-syntax install-visualizador check-tools \
+        lexico sintactico visualizar completo \
         run-basic run-basic-file run-syntax run-syntax-file run-all run-all-file \
         demo test-correcto test-errores test-all \
         clean clean-all
