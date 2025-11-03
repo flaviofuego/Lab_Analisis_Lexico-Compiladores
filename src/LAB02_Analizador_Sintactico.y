@@ -10,9 +10,35 @@ void yyerror(const char *s);
 
 char output_buffer[50000] = "";
 int error_count = 0;
+int last_error_line = 0;
+int error_line_stack[100];
+int error_line_count = 0;
 
 void append_output(const char* text) {
     strcat(output_buffer, text);
+}
+
+void mark_error_line(int line) {
+    // Marcar la línea como teniendo un error para reporte posterior
+    for (int i = 0; i < error_line_count; i++) {
+        if (error_line_stack[i] == line) {
+            return; // Ya marcada
+        }
+    }
+    if (error_line_count < 100) {
+        error_line_stack[error_line_count++] = line;
+    }
+}
+
+void report_error_at_line(int line) {
+    // Solo reportar el error si es en una línea diferente a la anterior
+    if (line != last_error_line && line > 0) {
+        char temp[200];
+        sprintf(temp, "línea %d error\n", line);
+        append_output(temp);
+        error_count++;
+        last_error_line = line;
+    }
 }
 
 void save_syntax_output(const char* input_filename) {
@@ -46,6 +72,7 @@ void save_syntax_output(const char* input_filename) {
 
 %union {
     char* str;
+    int lineno;
 }
 
 %token <str> ID
@@ -58,13 +85,13 @@ void save_syntax_output(const char* input_filename) {
 %token PLUS MINUS TIMES DIVIDE MOD POW FLOORDIV
 
 /* Operadores de comparación */
-%token EQUAL NOTEQUAL NOTEQUAL2 LESS GREATER LESSEQUAL GREATEREQUAL
+%token EQUAL NOTEQUAL NOTEQUAL2 LESS GREATER LESSEQUAL GREATEREQUAL EQUALQUES
 
 /* Operadores bit a bit */
 %token BITAND BITOR BITXOR BITNOT LSHIFT RSHIFT
 
 /* Operadores de asignación */
-%token ASSIGN PLUSASSIGN MINUSASSIGN TIMESASSIGN DIVIDEASSIGN FLOORDIVASSIGN
+%token ASSIGN PLUSASSIGN MINUSASSIGN TIMESASSIGN DIVIDEASSIGN FLOORDIVASSIGN EQUALQUESASSIGN
 
 /* Delimitadores */
 %token LPAREN RPAREN LBRACKET RBRACKET LBRACE RBRACE
@@ -120,15 +147,13 @@ simple_stmt:
         /* línea vacía */
     }
     | error NEWLINE {
-        char temp[200];
-        // El error ocurrió en la línea anterior al NEWLINE actual
+        // El error ocurrió en la línea actual - 1
         int err_line = yylineno - 1;
         if (err_line < 1) err_line = 1;
         
-        sprintf(temp, "línea %d error\n", err_line);
-        append_output(temp);
-        error_count++;
-        yyerrok;
+        report_error_at_line(err_line);
+        yyclearin; // Limpiar el token lookahead
+        yyerrok;   // Recuperarse del error
     }
     ;
 
@@ -151,22 +176,52 @@ funcdef:
     | DEF ID LPAREN parameters RPAREN COLON NEWLINE suite {
         /* función con parámetros */
     }
+    | DEF ID LPAREN RPAREN NEWLINE {
+        /* Error: falta ':' después de función sin parámetros */
+        report_error_at_line(yylineno - 1);
+    } suite {
+        yyerrok;
+    }
+    | DEF ID LPAREN parameters RPAREN NEWLINE {
+        /* Error: falta ':' después de función con parámetros */
+        report_error_at_line(yylineno - 1);
+    } suite {
+        yyerrok;
+    }
     ;
 
 ifstmt:
     IF expresion_booleana COLON NEWLINE suite elif_list else_opt {
         /* if completo con posibles elif y else */
     }
+    | IF expresion_booleana NEWLINE {
+        /* Error: falta ':' después de condición if */
+        report_error_at_line(yylineno - 1);
+    } suite elif_list else_opt {
+        yyerrok;
+    }
     ;
 
 elif_list:
     /* vacío - sin elif */
     | elif_list opt_newlines opt_tabs ELIF expresion_booleana COLON NEWLINE suite
+    | elif_list opt_newlines opt_tabs ELIF expresion_booleana NEWLINE {
+        /* Error: falta ':' después de condición elif */
+        report_error_at_line(yylineno - 1);
+    } suite {
+        yyerrok;
+    }
     ;
 
 else_opt:
     /* vacío - sin else */
     | opt_newlines opt_tabs ELSE COLON NEWLINE suite
+    | opt_newlines opt_tabs ELSE NEWLINE {
+        /* Error: falta ':' después de else */
+        report_error_at_line(yylineno - 1);
+    } suite {
+        yyerrok;
+    }
     ;
 
 opt_tabs:
@@ -183,6 +238,24 @@ forstmt:
     FOR ID IN secuencia COLON NEWLINE suite {
         /* ciclo for: for id in secuencia: */
     }
+    | FOR ID IN RANGE ID {
+        /* Error: falta '(' después de range */
+        report_error_at_line(yylineno);
+    } LPAREN expresion_booleana RPAREN RPAREN COLON NEWLINE suite {
+        yyerrok;
+    }
+    | FOR ID call_range COLON NEWLINE {
+        /* Error: falta 'in' antes de range */
+        report_error_at_line(yylineno - 1);
+    } suite {
+        yyerrok;
+    }
+    | FOR ID IN secuencia NEWLINE {
+        /* Error: falta ':' después de secuencia */
+        report_error_at_line(yylineno - 1);
+    } suite {
+        yyerrok;
+    }
     ;
 
 secuencia:
@@ -190,6 +263,16 @@ secuencia:
     | call_range
     | lista
     | STRING
+    | RANGE call_function RPAREN {
+        /* Error: falta '(' después de range */
+        report_error_at_line(yylineno);
+        yyerrok;
+    }
+    | RANGE ID LPAREN {
+        /* Error: falta '(' después de range */
+        report_error_at_line(yylineno);
+        yyerrok;
+    } expresion_booleana RPAREN
     ;
 
 call_range:
@@ -211,6 +294,18 @@ lista_elementos:
 whilestmt:
     WHILE expresion_booleana COLON NEWLINE suite {
         /* ciclo while: while expresion: */
+    }
+    | WHILE expresion_booleana NEWLINE {
+        /* Error: falta ':' después de condición while */
+        report_error_at_line(yylineno - 1);
+    } suite {
+        yyerrok;
+    }
+    | WHILE COLON NEWLINE {
+        /* Error: falta expresión en while */
+        report_error_at_line(yylineno - 1);
+    } suite {
+        yyerrok;
     }
     ;
 
@@ -242,6 +337,7 @@ expresion_comparacion:
     | expresion_aritmetica GREATER expresion_aritmetica
     | expresion_aritmetica LESSEQUAL expresion_aritmetica
     | expresion_aritmetica GREATEREQUAL expresion_aritmetica
+    | expresion_aritmetica EQUALQUES expresion_aritmetica
     | expresion_aritmetica IS expresion_aritmetica
     | expresion_aritmetica IS NOT expresion_aritmetica
     | expresion_aritmetica IN expresion_aritmetica
@@ -339,6 +435,7 @@ statements:
 
 asignacion:
     identificadores ASSIGN expresiones
+    | identificadores EQUALQUESASSIGN expresiones
     ;
 
 identificadores:
@@ -404,5 +501,5 @@ int main(int argc, char **argv) {
         fclose(yyin);
     }
     
-    return result;
+    return 0;
 }

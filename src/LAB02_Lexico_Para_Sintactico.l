@@ -87,7 +87,7 @@ INVALID_ID  ({LETTER}|_)({LETTER}|{DIGIT}|_)*[$@#!?`\\|&]{1}({LETTER}|{DIGIT}|_|
 "!="            { return NOTEQUAL; }
 ">="            { return GREATEREQUAL; }
 "<="            { return LESSEQUAL; }
-"=?"            { error_count++; return ERROR_TOKEN; }
+"=?"            { return EQUALQUESASSIGN; }
 "%"             { return MOD; }
 "&"             { return BITAND; }
 "|"             { return BITOR; }
