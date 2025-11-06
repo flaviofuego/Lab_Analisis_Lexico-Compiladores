@@ -194,6 +194,7 @@ funcdef:
     }
     ;
 
+/* if-elif-else unificado (maneja nivel 0 y niveles anidados) */
 ifstmt:
     if_clause elif_clauses else_clause
     ;
@@ -210,6 +211,7 @@ if_clause:
     }
     ;
 
+/* elif/else unificados (sin tabs - nivel 0) */
 elif_clauses:
     /* vacío - sin elif */
     | elif_clauses elif_clause
@@ -238,11 +240,6 @@ else_clause:
     } suite {
         yyerrok;
     }
-    ;
-
-opt_tabs:
-    /* vacío - sin tabs */
-    | tabs
     ;
 
 opt_newlines:
@@ -437,16 +434,29 @@ suite_statements:
 indented_statement:
     tabs statement
     | tabs compound_stmt
+    | tabs ELIF expresion_booleana COLON NEWLINE suite {
+        /* elif anidado como statement independiente */
+    }
+    | tabs ELIF expresion_booleana NEWLINE {
+        /* Error: falta ':' en elif anidado */
+        report_error_at_line(yylineno - 1);
+    } suite {
+        yyerrok;
+    }
+    | tabs ELSE COLON NEWLINE suite {
+        /* else anidado como statement independiente */
+    }
+    | tabs ELSE NEWLINE {
+        /* Error: falta ':' en else anidado */
+        report_error_at_line(yylineno - 1);
+    } suite {
+        yyerrok;
+    }
     ;
 
 tabs:
     TAB
     | tabs TAB
-    ;
-
-statements:
-    statement
-    | statements statement
     ;
 
 asignacion:
