@@ -36,6 +36,10 @@ void report_error_at_line(int line) {
         char temp[200];
         sprintf(temp, "línea %d error\n", line);
         append_output(temp);
+        
+        // También mostrar en consola
+        printf("línea %d error\n", line);
+        
         error_count++;
         last_error_line = line;
     }
