@@ -1,7 +1,7 @@
 DEF id1=eval parabre=( id2=xi coma=, id3=exp parcierr=) dospunt=: 
     id4=ans asign= = FALSE 
     FOR id5=i IN RANGE parabre=( LEN parabre=( id3=exp parcierr=) parcierr=) dospunt=: 
-        id6=part ERROR=? TRUE 
+        id6=part igual_int= =? TRUE 
         FOR id7=j IN RANGE parabre=( LEN parabre=( id3=exp corabre=[ id5=i corcierr=] parcierr=) parcierr=) dospunt=: 
             id6=part asign= = id6=part AND id2=xi corabre=[ id3=exp corabre=[ id5=i corcierr=] corabre=[ id7=j corcierr=] corcierr=] 
         id4=ans asign= = id4=ans OR id6=part 
@@ -33,4 +33,4 @@ Id11=x
 Id12=table
 Id13=y
 
-2 Errores
+1 Errores

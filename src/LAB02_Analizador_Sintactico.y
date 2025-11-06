@@ -191,21 +191,31 @@ funcdef:
     ;
 
 ifstmt:
-    IF expresion_booleana COLON NEWLINE suite elif_list else_opt {
-        /* if completo con posibles elif y else */
+    if_clause elif_clauses else_clause
+    ;
+
+if_clause:
+    IF expresion_booleana COLON NEWLINE suite {
+        /* if básico */
     }
     | IF expresion_booleana NEWLINE {
         /* Error: falta ':' después de condición if */
         report_error_at_line(yylineno - 1);
-    } suite elif_list else_opt {
+    } suite {
         yyerrok;
     }
     ;
 
-elif_list:
+elif_clauses:
     /* vacío - sin elif */
-    | elif_list opt_newlines opt_tabs ELIF expresion_booleana COLON NEWLINE suite
-    | elif_list opt_newlines opt_tabs ELIF expresion_booleana NEWLINE {
+    | elif_clauses elif_clause
+    ;
+
+elif_clause:
+    ELIF expresion_booleana COLON NEWLINE suite {
+        /* elif válido */
+    }
+    | ELIF expresion_booleana NEWLINE {
         /* Error: falta ':' después de condición elif */
         report_error_at_line(yylineno - 1);
     } suite {
@@ -213,10 +223,12 @@ elif_list:
     }
     ;
 
-else_opt:
+else_clause:
     /* vacío - sin else */
-    | opt_newlines opt_tabs ELSE COLON NEWLINE suite
-    | opt_newlines opt_tabs ELSE NEWLINE {
+    | ELSE COLON NEWLINE suite {
+        /* else válido */
+    }
+    | ELSE NEWLINE {
         /* Error: falta ':' después de else */
         report_error_at_line(yylineno - 1);
     } suite {
