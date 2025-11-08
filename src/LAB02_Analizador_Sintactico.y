@@ -109,13 +109,13 @@ void save_syntax_output(const char* input_filename) {
 %token PLUS MINUS TIMES DIVIDE MOD POW FLOORDIV
 
 /* Operadores de comparación */
-%token EQUAL NOTEQUAL NOTEQUAL2 LESS GREATER LESSEQUAL GREATEREQUAL EQUALQUES
+%token EQUAL NOTEQUAL NOTEQUAL2 LESS GREATER LESSEQUAL GREATEREQUAL
 
 /* Operadores bit a bit */
 %token BITAND BITOR BITXOR BITNOT LSHIFT RSHIFT
 
 /* Operadores de asignación */
-%token ASSIGN PLUSASSIGN MINUSASSIGN TIMESASSIGN DIVIDEASSIGN FLOORDIVASSIGN EQUALQUESASSIGN
+%token ASSIGN PLUSASSIGN MINUSASSIGN TIMESASSIGN DIVIDEASSIGN FLOORDIVASSIGN
 
 /* Delimitadores */
 %token LPAREN RPAREN LBRACKET RBRACKET LBRACE RBRACE
@@ -372,7 +372,6 @@ expresion_comparacion:
     | expresion_aritmetica GREATER expresion_aritmetica
     | expresion_aritmetica LESSEQUAL expresion_aritmetica
     | expresion_aritmetica GREATEREQUAL expresion_aritmetica
-    | expresion_aritmetica EQUALQUES expresion_aritmetica
     | expresion_aritmetica IS expresion_aritmetica
     | expresion_aritmetica IS NOT expresion_aritmetica
     | expresion_aritmetica IN expresion_aritmetica
@@ -483,11 +482,6 @@ tabs:
 
 asignacion:
     identificadores ASSIGN expresiones {
-        if ($1 > 1 && $1 != $3) {
-            report_error_at_line(yylineno - 1);
-        }
-    }
-    | identificadores EQUALQUESASSIGN expresiones {
         if ($1 > 1 && $1 != $3) {
             report_error_at_line(yylineno - 1);
         }
