@@ -40,11 +40,20 @@ void report_error_at_line(int line) {
         sprintf(temp, "línea %d error\n", line);
         append_output(temp);
         
-        // También mostrar en consola
-        printf("línea %d error\n", line);
+        // NO imprimir en consola durante el parsing
+        // Se imprimirá después con las estadísticas sintácticas
         
         error_count++;
         last_error_line = line;
+    }
+}
+
+void print_syntax_errors() {
+    // Imprimir todos los errores sintácticos que se capturaron
+    // Buscar el primer salto de línea para omitir el encabezado
+    char* error_start = strchr(output_buffer, '\n');
+    if (error_start && strlen(error_start) > 1) {
+        printf("%s", error_start + 1);
     }
 }
 
@@ -535,8 +544,6 @@ int main(int argc, char **argv) {
         yyin = file;
     }
     
-    printf("Iniciando análisis sintáctico...\n");
-    
     // Imprimir encabezado
     char header[500];
     if (input_filename) {
@@ -548,17 +555,26 @@ int main(int argc, char **argv) {
     
     int result = yyparse();
     
-    save_syntax_output(input_filename);
-    
-    // Mostrar estadísticas léxicas
+    // Mostrar estadísticas léxicas PRIMERO
     print_lexical_stats();
     
-    // Mostrar estadísticas sintácticas
+    // Luego mostrar estadísticas sintácticas
+    printf("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    printf("ANÁLISIS SINTÁCTICO\n");
+    printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    
+    // Imprimir errores de línea si existen
+    if (error_count > 0) {
+        print_syntax_errors();
+    }
+    
+    save_syntax_output(input_filename);
+    
     if (error_count == 0) {
-        printf("\nAnálisis sintáctico completado exitosamente.\n");
+        printf("Análisis sintáctico completado exitosamente.\n");
         printf("0 errores sintácticos\n");
     } else {
-        printf("\nAnálisis sintáctico completado con errores.\n");
+        printf("Análisis sintáctico completado con errores.\n");
         printf("%d errores sintácticos\n", error_count);
     }
     
