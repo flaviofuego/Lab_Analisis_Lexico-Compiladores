@@ -130,7 +130,6 @@ sintactico: $(SYNTAX_EXECUTABLE)
 		echo "$(RED)❌ Error: El archivo $(FILE) no existe$(NC)"; \
 		exit 1; \
 	fi
-	@echo "$(CYAN)� ANÁLISIS SINTÁCTICO$(NC)"
 	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 	@echo "Archivo: $(FILE)"
 	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
