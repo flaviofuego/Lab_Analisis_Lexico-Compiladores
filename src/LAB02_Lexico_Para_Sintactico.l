@@ -8,6 +8,7 @@
 char* identifiers[100];
 int id_counter = 0;
 extern int error_count;  // Declarada en el analizador sintáctico
+int lexical_error_count = 0;  // Contador de errores léxicos
 
 // Obtener el número de un identificador
 int get_id_number(char* identifier) {
@@ -20,6 +21,16 @@ int get_id_number(char* identifier) {
     strcpy(identifiers[id_counter], identifier);
     id_counter++;
     return id_counter;
+}
+
+// Función para imprimir estadísticas léxicas
+void print_lexical_stats() {
+    printf("\n");
+    printf("%d Identificadores\n", id_counter);
+    for(int i = 0; i < id_counter; i++) {
+        printf("Id%d=%s\n", i + 1, identifiers[i]);
+    }
+    printf("\n%d Errores léxicos\n", lexical_error_count);
 }
 
 %}
@@ -75,8 +86,8 @@ INVALID_ID  ({LETTER}|_)({LETTER}|{DIGIT}|_)*[$@#!?`\\|&]{1}({LETTER}|{DIGIT}|_|
 {REAL}          { yylval.str = strdup(yytext); return REAL; }
 {LONG}          { yylval.str = strdup(yytext); return LONG; }
 {INTEGER}       { yylval.str = strdup(yytext); return INTEGER; }
-{INVALID_NUM}   { yylval.str = strdup(yytext); error_count++; return ERROR_TOKEN; }
-{INVALID_ID}    { yylval.str = strdup(yytext); error_count++; return ERROR_TOKEN; }
+{INVALID_NUM}   { yylval.str = strdup(yytext); lexical_error_count++; return ERROR_TOKEN; }
+{INVALID_ID}    { yylval.str = strdup(yytext); lexical_error_count++; return ERROR_TOKEN; }
 
 "**"            { return POW; }
 "//"            { return FLOORDIV; }
@@ -118,7 +129,11 @@ INVALID_ID  ({LETTER}|_)({LETTER}|{DIGIT}|_)*[$@#!?`\\|&]{1}({LETTER}|{DIGIT}|_|
 ","             { return COMMA; }
 "."             { return DOT; }
 
-{ID}            { yylval.str = strdup(yytext); return ID; }
+{ID}            { 
+                  get_id_number(yytext);  // Registrar el identificador
+                  yylval.str = strdup(yytext); 
+                  return ID; 
+                }
 
 "    "          { return TAB; }
 \t              { return TAB; }
@@ -126,6 +141,6 @@ INVALID_ID  ({LETTER}|_)({LETTER}|{DIGIT}|_)*[$@#!?`\\|&]{1}({LETTER}|{DIGIT}|_|
 [ ]             { /* espacios individuales - ignorar */ }
 \r              { /* ignorar retorno de carro */ }
 
-.               { yylval.str = strdup(yytext); error_count++; return ERROR_TOKEN; }
+.               { yylval.str = strdup(yytext); lexical_error_count++; return ERROR_TOKEN; }
 
 %%

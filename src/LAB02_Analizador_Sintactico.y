@@ -9,6 +9,7 @@ extern FILE *yyin;
 extern int yylineno;
 int yylex(void);
 void yyerror(const char *s);
+extern void print_lexical_stats(void);  // Declarar función del léxico
 
 char output_buffer[50000] = "";
 int error_count = 0;
@@ -549,11 +550,15 @@ int main(int argc, char **argv) {
     
     save_syntax_output(input_filename);
     
+    // Mostrar estadísticas léxicas
+    print_lexical_stats();
+    
+    // Mostrar estadísticas sintácticas
     if (error_count == 0) {
-        printf("Análisis sintáctico completado exitosamente.\n");
+        printf("\nAnálisis sintáctico completado exitosamente.\n");
         printf("0 errores sintácticos\n");
     } else {
-        printf("Análisis sintáctico completado con errores.\n");
+        printf("\nAnálisis sintáctico completado con errores.\n");
         printf("%d errores sintácticos\n", error_count);
     }
     
