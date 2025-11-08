@@ -173,6 +173,44 @@ run-basic: lexico
 run-syntax: sintactico
 run-all: completo
 
+# ============================================================
+# PRUEBAS RÁPIDAS
+# ============================================================
+
+# Prueba con archivo de ejemplo
+demo: $(SYNTAX_EXECUTABLE)
+	@echo "$(CYAN)🧪 Ejecutando prueba con archivo de ejemplo...$(NC)"
+	@$(MAKE) sintactico FILE=$(INPUT_FILE)
+
+# Prueba con archivo correcto
+test-correcto: $(SYNTAX_EXECUTABLE)
+	@echo "$(CYAN)🧪 Ejecutando prueba con archivo correcto...$(NC)"
+	@$(MAKE) sintactico FILE=entradas/prueba_correcta.py
+
+# Prueba con archivo con errores
+test-errores: $(SYNTAX_EXECUTABLE)
+	@echo "$(CYAN)🧪 Ejecutando prueba con archivo con errores...$(NC)"
+	@$(MAKE) sintactico FILE=entradas/prueba2.py
+
+# Ejecutar todas las pruebas
+test-all: $(SYNTAX_EXECUTABLE)
+	@echo "$(CYAN)╔════════════════════════════════════════════╗$(NC)"
+	@echo "$(CYAN)║     EJECUTANDO TODAS LAS PRUEBAS            ║$(NC)"
+	@echo "$(CYAN)╚════════════════════════════════════════════╝$(NC)"
+	@echo ""
+	@echo "$(YELLOW)1️⃣  Prueba con archivo de ejemplo$(NC)"
+	@$(MAKE) demo
+	@echo ""
+	@echo "$(YELLOW)2️⃣  Prueba con archivo correcto$(NC)"
+	@$(MAKE) test-correcto
+	@echo ""
+	@echo "$(YELLOW)3️⃣  Prueba con archivo con errores$(NC)"
+	@$(MAKE) test-errores
+	@echo ""
+	@echo "$(GREEN)╔════════════════════════════════════════════╗$(NC)"
+	@echo "$(GREEN)║        TODAS LAS PRUEBAS COMPLETADAS       ║$(NC)"
+	@echo "$(GREEN)╚════════════════════════════════════════════╝$(NC)"
+
 # Limpiar archivos compilados
 clean:
 	@echo "$(YELLOW)🧹 Limpiando archivos compilados...$(NC)"

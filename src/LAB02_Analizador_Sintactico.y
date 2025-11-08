@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 extern FILE *yyin;
 extern int yylineno;
@@ -46,6 +48,12 @@ void report_error_at_line(int line) {
 }
 
 void save_syntax_output(const char* input_filename) {
+    // Crear directorio salidas/ si no existe
+    struct stat st = {0};
+    if (stat("salidas", &st) == -1) {
+        mkdir("salidas", 0700);
+    }
+    
     char output_filename[256];
     if (input_filename) {
         const char* base_name = strrchr(input_filename, '/');
@@ -70,6 +78,8 @@ void save_syntax_output(const char* input_filename) {
         fprintf(output_file, "%s", output_buffer);
         fclose(output_file);
         printf("Análisis sintáctico guardado en: %s\n", output_filename);
+    } else {
+        printf("Error: No se pudo crear el archivo de salida %s\n", output_filename);
     }
 }
 %}
@@ -104,6 +114,8 @@ void save_syntax_output(const char* input_filename) {
 
 /* Indentación con TABs */
 %token TAB
+
+%type <lineno> identificadores expresiones expresion
 
 %start programa
 
@@ -460,24 +472,46 @@ tabs:
     ;
 
 asignacion:
-    identificadores ASSIGN expresiones
-    | identificadores EQUALQUESASSIGN expresiones
+    identificadores ASSIGN expresiones {
+        if ($1 > 1 && $1 != $3) {
+            report_error_at_line(yylineno - 1);
+        }
+    }
+    | identificadores EQUALQUESASSIGN expresiones {
+        if ($1 > 1 && $1 != $3) {
+            report_error_at_line(yylineno - 1);
+        }
+    }
     ;
 
 identificadores:
-    ID
-    | expresion_primaria
-    | identificadores COMMA ID
-    | identificadores COMMA expresion_primaria
+    ID {
+        $$ = 1;
+    }
+    | expresion_primaria {
+        $$ = 1;
+    }
+    | identificadores COMMA ID {
+        $$ = $1 + 1;
+    }
+    | identificadores COMMA expresion_primaria {
+        $$ = $1 + 1;
+    }
     ;
 
 expresiones:
-    expresion
-    | expresiones COMMA expresion
+    expresion {
+        $$ = $1;
+    }
+    | expresiones COMMA expresion {
+        $$ = $1 + $3;
+    }
     ;
 
 expresion:
-    expresion_booleana
+    expresion_booleana {
+        $$ = 1;
+    }
     ;
 
 %%
