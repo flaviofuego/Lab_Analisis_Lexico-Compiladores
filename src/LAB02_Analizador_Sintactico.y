@@ -10,6 +10,7 @@ extern int yylineno;
 int yylex(void);
 void yyerror(const char *s);
 extern void print_lexical_stats(void);  // Declarar función del léxico
+extern void save_lexical_output(const char* input_filename);  // Declarar función para guardar salida léxica
 
 char output_buffer[50000] = "";
 int error_count = 0;
@@ -548,6 +549,9 @@ int main(int argc, char **argv) {
     append_output(header);
     
     int result = yyparse();
+    
+    // Guardar salida léxica en archivo
+    save_lexical_output(input_filename);
     
     // Mostrar estadísticas léxicas PRIMERO
     print_lexical_stats();
