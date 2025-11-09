@@ -386,13 +386,13 @@ docker build -t analizador-lexico .
 docker run --rm -v "${PWD}:/workspace" analizador-lexico bash -c "make help"
 ```
 
-## � Documentación Adicional
+## Documentación Adicional
 
 - **[QUICKSTART.md](QUICKSTART.md)** - ⚡ Referencia rápida de comandos (Copy & Paste)
 - **[MIGRACION.md](MIGRACION.md)** - 🔄 Guía de migración de scripts a Makefile
 - **[IMPLEMENTACION.md](IMPLEMENTACION.md)** - 📋 Detalles técnicos de implementación
 
-## �👥 Equipo de Desarrollo
+## 👥 Equipo de Desarrollo
 
 **Laboratorio de Análisis Léxico y Sintáctico - Compiladores**
 - **Estudiantes**: Arregoces, Gonzalez, Sanchez, Oviedo
