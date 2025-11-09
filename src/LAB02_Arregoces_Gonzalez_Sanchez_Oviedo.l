@@ -11,6 +11,31 @@ char* identifiers[100];
 int id_counter = 0;
 extern int error_count;  // Declarada en el analizador sintáctico
 int lexical_error_count = 0;  // Contador de errores léxicos
+int lexical_error_lines[200];
+int lexical_error_line_count = 0;
+
+void register_lexical_error(int line) {
+    if (line <= 0) {
+        return;
+    }
+    for (int i = 0; i < lexical_error_line_count; i++) {
+        if (lexical_error_lines[i] == line) {
+            return;
+        }
+    }
+    if (lexical_error_line_count < (int)(sizeof(lexical_error_lines) / sizeof(lexical_error_lines[0]))) {
+        lexical_error_lines[lexical_error_line_count++] = line;
+    }
+}
+
+int has_lexical_error_at_line(int line) {
+    for (int i = 0; i < lexical_error_line_count; i++) {
+        if (lexical_error_lines[i] == line) {
+            return 1;
+        }
+    }
+    return 0;
+}
 
 // Buffer para guardar los tokens
 char token_output_buffer[50000] = "";
@@ -136,8 +161,8 @@ INVALID_ID  ({LETTER}|_)({LETTER}|{DIGIT}|_)*[$@#!?`\\|&]{1}({LETTER}|{DIGIT}|_|
 {REAL}          { char temp[100]; sprintf(temp, "real=%s ", yytext); append_token_to_buffer(temp); yylval.str = strdup(yytext); return REAL; }
 {LONG}          { char temp[100]; sprintf(temp, "long=%s ", yytext); append_token_to_buffer(temp); yylval.str = strdup(yytext); return LONG; }
 {INTEGER}       { char temp[100]; sprintf(temp, "entero=%s ", yytext); append_token_to_buffer(temp); yylval.str = strdup(yytext); return INTEGER; }
-{INVALID_NUM}   { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_token_to_buffer(temp); yylval.str = strdup(yytext); lexical_error_count++; return ERROR_TOKEN; }
-{INVALID_ID}    { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_token_to_buffer(temp); yylval.str = strdup(yytext); lexical_error_count++; return ERROR_TOKEN; }
+{INVALID_NUM}   { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_token_to_buffer(temp); yylval.str = strdup(yytext); lexical_error_count++; register_lexical_error(yylineno); return ERROR_TOKEN; }
+{INVALID_ID}    { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_token_to_buffer(temp); yylval.str = strdup(yytext); lexical_error_count++; register_lexical_error(yylineno); return ERROR_TOKEN; }
 
 "**"            { append_token_to_buffer("potencia= ** "); return POW; }
 "//"            { append_token_to_buffer("div_entera= // "); return FLOORDIV; }
@@ -193,6 +218,6 @@ INVALID_ID  ({LETTER}|_)({LETTER}|{DIGIT}|_)*[$@#!?`\\|&]{1}({LETTER}|{DIGIT}|_|
 [ ]             { /* espacios individuales - ignorar */ }
 \r              { /* ignorar retorno de carro */ }
 
-.               { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_token_to_buffer(temp); yylval.str = strdup(yytext); lexical_error_count++; return ERROR_TOKEN; }
+.               { char temp[100]; sprintf(temp, "ERROR=%s ", yytext); append_token_to_buffer(temp); yylval.str = strdup(yytext); lexical_error_count++; register_lexical_error(yylineno); return ERROR_TOKEN; }
 
 %%

@@ -11,6 +11,7 @@ int yylex(void);
 void yyerror(const char *s);
 extern void print_lexical_stats(void);  // Declarar función del léxico
 extern void save_lexical_output(const char* input_filename);  // Declarar función para guardar salida léxica
+extern int has_lexical_error_at_line(int line);
 
 char output_buffer[50000] = "";
 int error_count = 0;
@@ -37,6 +38,10 @@ void mark_error_line(int line) {
 void report_error_at_line(int line) {
     // Solo reportar el error si es en una línea diferente a la anterior
     if (line != last_error_line && line > 0) {
+        if (has_lexical_error_at_line(line)) {
+            last_error_line = line;
+            return;
+        }
         char temp[200];
         sprintf(temp, "línea %d error\n", line);
         append_output(temp);
