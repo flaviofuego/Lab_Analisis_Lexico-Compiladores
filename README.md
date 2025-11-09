@@ -59,12 +59,6 @@ docker run --rm -v "${PWD}:/workspace" analizador-lexico make build
 # Ejecutar análisis completo de un archivo
 docker run --rm -v "${PWD}:/workspace" analizador-lexico make completo FILE=entradas/prueba_correcta.py
 
-# Solo análisis sintáctico
-docker run --rm -v "${PWD}:/workspace" analizador-lexico make sintactico FILE=entradas/prueba2.py
-
-# Solo análisis léxico
-docker run --rm -v "${PWD}:/workspace" analizador-lexico make lexico FILE=entradas/prueba1.py
-
 # Ver ayuda completa del Makefile
 docker run --rm -v "${PWD}:/workspace" analizador-lexico make help
 ```
@@ -218,7 +212,7 @@ Lab_Analisis_Lexico-Compiladores/
 
 El analizador genera automáticamente archivos de salida en el directorio `salidas/`:
 
-- **Nombre del archivo**: `{nombre_archivo_entrada}_tokens.txt`
+- **Nombre del archivo**: `{nombre_archivo_entrada}_lexico_tokens.txt`
 - **Contenido**:
   - Lista de tokens reconocidos con sus tipos
   - Tabla de identificadores numerados
