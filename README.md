@@ -2,7 +2,9 @@
 
 ## 📋 Descripción
 
-**Analizador léxico y sintáctico completo** para Python implementado con Flex/Lex y Yacc/Bison:
+Este proyecto implementa un **analizador léxico y sintáctico completo** para un **subconjunto del lenguaje Python**, desarrollado como parte del **Laboratorio 2 de la asignatura Compiladores**.
+
+El sistema permite **validar la estructura sintáctica** de programas en Python simplificado, identificar **errores léxicos y sintácticos**, y generar **archivos de salida** con reportes detallados de los resultados del análisis.
 
 ### 📝 Analizador Léxico:
 - **19+ palabras reservadas** incluyendo `True`, `False`, `import`, `print`, `range`, `len`
@@ -12,11 +14,16 @@
 - Generación automática de archivos de salida con tokens y tabla de identificadores
 
 ### 🔍 Analizador Sintáctico:
-- Validación sintáctica completa de programas Python
-- Detección de errores sintácticos con número de línea
-- Soporta estructuras: asignación, funciones, condicionales, ciclos, listas
-- Gramática completa para Python simplificado
-- Generación de reporte de errores sintácticos
+- Verifica la **validez gramatical** de programas escritos en Python simplificado.
+- Detecta **errores de sintaxis** indicando la **línea exacta** donde ocurren.
+- Soporta **estructuras esenciales del lenguaje** como:
+  - Asignaciones simples y múltiples
+  - Definiciones de funciones
+  - Condicionales (`if`, `elif`, `else`)
+  - Ciclos (`for`, `while`)
+  - Sentencias de control (`break`, `continue`, `pass`)
+  - Instrucciones `print`, `import`, y `range()`
+- Genera un **archivo de salida (`salida.txt`)** con el resultado del análisis sintáctico.
 
 ## 🛠️ Requisitos
 
@@ -185,25 +192,26 @@ docker run --rm -v "${PWD}:/workspace" analizador-lexico make help
 
 ```
 Lab_Analisis_Lexico-Compiladores/
-├── src/                                            # Código fuente
-│   ├── LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l  # Analizador léxico (Flex)
-│   ├── LAB02_Analizador_Sintactico.y              # Analizador sintáctico (Yacc/Bison)
-│   └── LAB02_Lexico_Sintactico.l                  # Léxico para sintáctico
-├── entradas/                                       # Archivos de prueba
-│   ├── entrada_ejemplo.py                          # Ejemplo complejo
-│   ├── prueba.py                                   # Prueba simple
-│   ├── prueba1.py                                  # Prueba con error léxico (=?)
-│   ├── prueba2.py                                  # Prueba con errores sintácticos
-│   └── prueba_correcta.py                          # Programa sintácticamente correcto
-├── salidas/                                        # Archivos de salida (generados)
-│   ├── *_tokens.txt                                # Resultados de análisis léxico
-│   └── *_sintactico.txt                            # Resultados de análisis sintáctico
-├── dist/                                           # Ejecutables (generados)
-│   ├── LAB01_Arregoces_Gonzalez_Sanchez_Oviedo    # Ejecutable léxico
-│   └── LAB02_Analizador_Sintactico                 # Ejecutable sintáctico
-├── Makefile                                        # Sistema de compilación y ejecución
-├── Dockerfile                                      # Entorno Docker (Flex+Bison+GCC)
-└── README.md                                       # Esta documentación
+├── src/                                           # Código fuente
+│   ├── LAB02_Arregoces_Gonzalez_Sanchez_Oviedo.y       # Analizador sintáctico (Yacc/Bison)
+│   └── LAB02_Arregoces_Gonzalez_Sanchez_Oviedo.l       # Léxico para sintáctico
+├── entradas/                                           # Archivos de prueba
+│   ├── entrada_ejemplo.py                              # Ejemplo complejo
+│   ├── prueba.py                                       # Prueba simple
+│   ├── prueba1.py                                      # Prueba con error léxico (=?)
+│   ├── prueba2.py                                      # Prueba con errores sintácticos
+│   └── prueba_correcta.py                              # Programa sintácticamente correcto
+├── salidas/                                            # Archivos de salida (generados)
+│   ├── *_lexico_tokens.txt                             # Resultados de análisis léxico
+│   └── *_sintactico.txt                                # Resultados de análisis sintáctico
+├── dist/                                               # Ejecutables (generados)
+│   ├── LAB02_Arregoces_Gonzalez_Sanchez_Oviedo.tab.c   # Código C generado por Yacc/Bison
+│   ├── LAB02_Arregoces_Gonzalez_Sanchez_Oviedo.tab.h   # Encabezado (tokens y definiciones Yacc)
+│   ├── LAB02_Arregoces_Gonzalez_Sanchez_Oviedo         # Ejecutable principal del analizador
+│   └── lex.yy.c                                        # Código C generado automáticamente por Flex
+├── Makefile                                            # Sistema de compilación y ejecución
+├── Dockerfile                                          # Entorno Docker (Flex+Bison+GCC)
+└── README.md                                           # Esta documentación
 ```
 
 ## 📤 Archivos de Salida
