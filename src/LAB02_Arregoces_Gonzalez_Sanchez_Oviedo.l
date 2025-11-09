@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include "LAB02_Analizador_Sintactico.tab.h"
+#include "LAB02_Arregoces_Gonzalez_Sanchez_Oviedo.tab.h"
 
 // Para el análisis sintáctico
 char* identifiers[100];

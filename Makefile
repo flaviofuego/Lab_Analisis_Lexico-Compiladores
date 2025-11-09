@@ -7,23 +7,13 @@
 # VARIABLES DE CONFIGURACIÓN
 # ============================================================
 
-# Analizador Léxico
-LEX_SOURCE = src/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.l
-EXECUTABLE = dist/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo
-COMPILE_FILE = dist/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.c
-
-# Analizador Sintáctico
-YACC_SOURCE = src/LAB02_Analizador_Sintactico.y
-LEX_SYNTAX_SOURCE = src/LAB02_Lexico_Para_Sintactico.l
-SYNTAX_EXECUTABLE = dist/LAB02_Analizador_Sintactico
-YACC_OUTPUT = dist/LAB02_Analizador_Sintactico.tab.c
-YACC_HEADER = dist/LAB02_Analizador_Sintactico.tab.h
-LEX_SYNTAX_OUTPUT = dist/lex.yy.c
-
-# Visualizador de Tokens
-VISUALIZADOR_SOURCE = src/visualizador_tokens.l
-VISUALIZADOR_EXECUTABLE = dist/visualizador_tokens
-VISUALIZADOR_OUTPUT = dist/visualizador_tokens.c
+# Analizador combinado (léxico + sintáctico)
+LEX_SOURCE = src/LAB02_Arregoces_Gonzalez_Sanchez_Oviedo.l
+YACC_SOURCE = src/LAB02_Arregoces_Gonzalez_Sanchez_Oviedo.y
+LEX_OUTPUT = dist/lex.yy.c
+YACC_OUTPUT = dist/LAB02_Arregoces_Gonzalez_Sanchez_Oviedo.tab.c
+YACC_HEADER = dist/LAB02_Arregoces_Gonzalez_Sanchez_Oviedo.tab.h
+ANALYZER_EXECUTABLE = dist/LAB02_Arregoces_Gonzalez_Sanchez_Oviedo
 
 # Archivos de entrada por defecto
 INPUT_FILE = entradas/entrada_ejemplo.py
@@ -32,7 +22,7 @@ FILE ?= $(INPUT_FILE)
 # Compilador y flags
 CC = gcc
 CFLAGS = -Wall -Wno-unused-function -Wno-implicit-function-declaration -std=c99
-LDFLAGS = -lfl -ly
+LDFLAGS = -lfl
 
 # Colores para la salida (ANSI escape codes)
 CYAN = \033[0;36m
@@ -51,43 +41,27 @@ NC = \033[0m # No Color
 # COMPILACIÓN DE ANALIZADORES
 # ============================================================
 
-# Compilar analizador léxico
-$(EXECUTABLE): $(LEX_SOURCE)
-	@mkdir -p dist
-	@flex -o $(COMPILE_FILE) $(LEX_SOURCE) 2>/dev/null
-	@$(CC) $(CFLAGS) $(COMPILE_FILE) -o $(EXECUTABLE) -lfl 2>/dev/null
-
-# Compilar analizador sintáctico
-$(SYNTAX_EXECUTABLE): $(YACC_SOURCE) $(LEX_SYNTAX_SOURCE)
+# Compilar analizador combinado
+$(ANALYZER_EXECUTABLE): $(YACC_SOURCE) $(LEX_SOURCE)
 	@mkdir -p dist
 	@bison -d -o $(YACC_OUTPUT) $(YACC_SOURCE) 2>/dev/null
-	@flex -o $(LEX_SYNTAX_OUTPUT) $(LEX_SYNTAX_SOURCE) 2>/dev/null
-	@$(CC) -Wno-implicit-function-declaration -Idist $(YACC_OUTPUT) $(LEX_SYNTAX_OUTPUT) -o $(SYNTAX_EXECUTABLE) -lfl 2>/dev/null
-
-# Compilar visualizador de tokens
-$(VISUALIZADOR_EXECUTABLE): $(VISUALIZADOR_SOURCE)
-	@mkdir -p dist
-	@flex -o $(VISUALIZADOR_OUTPUT) $(VISUALIZADOR_SOURCE) 2>/dev/null
-	@$(CC) $(CFLAGS) $(VISUALIZADOR_OUTPUT) -o $(VISUALIZADOR_EXECUTABLE) -lfl 2>/dev/null
+	@flex -o $(LEX_OUTPUT) $(LEX_SOURCE) 2>/dev/null
+	@$(CC) $(CFLAGS) -Idist $(YACC_OUTPUT) $(LEX_OUTPUT) -o $(ANALYZER_EXECUTABLE) $(LDFLAGS) 2>/dev/null
 
 # ============================================================
 # COMANDOS DE INSTALACIÓN/COMPILACIÓN
 # ============================================================
 
-# Compilar todo (ambos analizadores)
+# Compilar analizador principal
 build: check-tools
 	@echo "$(CYAN)╔════════════════════════════════════════════╗$(NC)"
-	@echo "$(CYAN)║     COMPILANDO ANALIZADORES                ║$(NC)"
+	@echo "$(CYAN)║     COMPILANDO ANALIZADOR COMBINADO        ║$(NC)"
 	@echo "$(CYAN)╚════════════════════════════════════════════╝$(NC)"
 	@echo ""
-	@echo "$(YELLOW)📦 Compilando analizador léxico...$(NC)"
-	@$(MAKE) $(EXECUTABLE) && echo "$(GREEN)✅ Analizador léxico compilado$(NC)" || echo "$(RED)❌ Error al compilar léxico$(NC)"
-	@echo ""
-	@echo "$(YELLOW)📦 Compilando analizador sintáctico...$(NC)"
-	@$(MAKE) $(SYNTAX_EXECUTABLE) && echo "$(GREEN)✅ Analizador sintáctico compilado$(NC)" || echo "$(RED)❌ Error al compilar sintáctico$(NC)"
-	@echo ""
-	@echo "$(YELLOW)📦 Compilando visualizador de tokens...$(NC)"
-	@$(MAKE) $(VISUALIZADOR_EXECUTABLE) && echo "$(GREEN)✅ Visualizador compilado$(NC)" || echo "$(RED)❌ Error al compilar visualizador$(NC)"
+	@echo "$(YELLOW)📦 Compilando analizador léxico-sintáctico...$(NC)"
+	@$(MAKE) $(ANALYZER_EXECUTABLE) && \
+		echo "$(GREEN)✅ Analizador combinado compilado$(NC)" || \
+		(echo "$(RED)❌ Error al compilar$(NC)"; exit 1)
 	@echo ""
 	@echo "$(GREEN)╔════════════════════════════════════════════╗$(NC)"
 	@echo "$(GREEN)║     COMPILACIÓN COMPLETADA EXITOSAMENTE    ║$(NC)"
@@ -95,12 +69,10 @@ build: check-tools
 
 # Alias para compatibilidad
 install: build
-install-basic: $(EXECUTABLE)
-	@echo "$(GREEN)✅ Analizador léxico compilado exitosamente$(NC)"
-install-syntax: $(SYNTAX_EXECUTABLE)
-	@echo "$(GREEN)✅ Analizador sintáctico compilado exitosamente$(NC)"
-install-visualizador: $(VISUALIZADOR_EXECUTABLE)
-	@echo "$(GREEN)✅ Visualizador de tokens compilado exitosamente$(NC)"
+install-basic: $(ANALYZER_EXECUTABLE)
+	@echo "$(GREEN)✅ Analizador combinado compilado (léxico + sintáctico)$(NC)"
+install-syntax: $(ANALYZER_EXECUTABLE)
+	@echo "$(GREEN)✅ Analizador combinado compilado (léxico + sintáctico)$(NC)"
 
 # Verificar herramientas necesarias
 check-tools:
@@ -113,38 +85,31 @@ check-tools:
 # ============================================================
 
 # Ejecutar análisis léxico
-lexico: $(EXECUTABLE)
+lexico: $(ANALYZER_EXECUTABLE)
 	@if [ ! -f "$(FILE)" ]; then \
 		echo "$(RED)❌ Error: El archivo $(FILE) no existe$(NC)"; \
 		exit 1; \
 	fi
-	@echo "$(CYAN)📝 ANÁLISIS LÉXICO$(NC)"
+	@echo "$(CYAN)📝 ANÁLISIS LÉXICO (analizador combinado)$(NC)"
 	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 	@echo "Archivo: $(FILE)"
 	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-	@./$(EXECUTABLE) $(FILE)
+	@./$(ANALYZER_EXECUTABLE) $(FILE)
 
 # Ejecutar análisis sintáctico
-sintactico: $(SYNTAX_EXECUTABLE)
+sintactico: $(ANALYZER_EXECUTABLE)
 	@if [ ! -f "$(FILE)" ]; then \
 		echo "$(RED)❌ Error: El archivo $(FILE) no existe$(NC)"; \
 		exit 1; \
 	fi
+	@echo "$(CYAN)🛠 ANÁLISIS SINTÁCTICO (analizador combinado)$(NC)"
 	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 	@echo "Archivo: $(FILE)"
 	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-	@./$(SYNTAX_EXECUTABLE) $(FILE)
+	@./$(ANALYZER_EXECUTABLE) $(FILE)
 
-# Ejecutar visualizador de tokens
-visualizar: $(VISUALIZADOR_EXECUTABLE)
-	@if [ ! -f "$(FILE)" ]; then \
-		echo "$(RED)❌ Error: El archivo $(FILE) no existe$(NC)"; \
-		exit 1; \
-	fi
-	@./$(VISUALIZADOR_EXECUTABLE) $(FILE)
-
-# Ejecutar ambos análisis
-completo: $(EXECUTABLE) $(SYNTAX_EXECUTABLE)
+# Ejecutar análisis completo
+completo: $(ANALYZER_EXECUTABLE)
 	@if [ ! -f "$(FILE)" ]; then \
 		echo "$(RED)❌ Error: El archivo $(FILE) no existe$(NC)"; \
 		exit 1; \
@@ -155,13 +120,7 @@ completo: $(EXECUTABLE) $(SYNTAX_EXECUTABLE)
 	@echo ""
 	@echo "📝 Archivo: $(FILE)"
 	@echo ""
-	@echo "$(YELLOW)1️⃣  ANÁLISIS LÉXICO$(NC)"
-	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-	@./$(EXECUTABLE) $(FILE)
-	@echo ""
-	@echo "$(YELLOW)2️⃣  ANÁLISIS SINTÁCTICO$(NC)"
-	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-	@./$(SYNTAX_EXECUTABLE) $(FILE)
+	@./$(ANALYZER_EXECUTABLE) $(FILE)
 	@echo ""
 	@echo "$(GREEN)╔════════════════════════════════════════════╗$(NC)"
 	@echo "$(GREEN)║        ANÁLISIS COMPLETO FINALIZADO        ║$(NC)"
@@ -177,22 +136,22 @@ run-all: completo
 # ============================================================
 
 # Prueba con archivo de ejemplo
-demo: $(SYNTAX_EXECUTABLE)
+demo: $(ANALYZER_EXECUTABLE)
 	@echo "$(CYAN)🧪 Ejecutando prueba con archivo de ejemplo...$(NC)"
-	@$(MAKE) sintactico FILE=$(INPUT_FILE)
+	@$(MAKE) completo FILE=$(INPUT_FILE)
 
 # Prueba con archivo correcto
-test-correcto: $(SYNTAX_EXECUTABLE)
+test-correcto: $(ANALYZER_EXECUTABLE)
 	@echo "$(CYAN)🧪 Ejecutando prueba con archivo correcto...$(NC)"
-	@$(MAKE) sintactico FILE=entradas/prueba_correcta.py
+	@$(MAKE) completo FILE=entradas/prueba_correcta.py
 
 # Prueba con archivo con errores
-test-errores: $(SYNTAX_EXECUTABLE)
+test-errores: $(ANALYZER_EXECUTABLE)
 	@echo "$(CYAN)🧪 Ejecutando prueba con archivo con errores...$(NC)"
-	@$(MAKE) sintactico FILE=entradas/prueba2.py
+	@$(MAKE) completo FILE=entradas/prueba2.py
 
 # Ejecutar todas las pruebas
-test-all: $(SYNTAX_EXECUTABLE)
+test-all: $(ANALYZER_EXECUTABLE)
 	@echo "$(CYAN)╔════════════════════════════════════════════╗$(NC)"
 	@echo "$(CYAN)║     EJECUTANDO TODAS LAS PRUEBAS            ║$(NC)"
 	@echo "$(CYAN)╚════════════════════════════════════════════╝$(NC)"
@@ -213,10 +172,10 @@ test-all: $(SYNTAX_EXECUTABLE)
 # Limpiar archivos compilados
 clean:
 	@echo "$(YELLOW)🧹 Limpiando archivos compilados...$(NC)"
-	@rm -f $(COMPILE_FILE) $(EXECUTABLE) 2>/dev/null
-	@rm -f $(YACC_OUTPUT) $(YACC_HEADER) $(LEX_SYNTAX_OUTPUT) $(SYNTAX_EXECUTABLE) 2>/dev/null
-	@rm -f $(VISUALIZADOR_OUTPUT) $(VISUALIZADOR_EXECUTABLE) 2>/dev/null
-	@rm -f src/LAB02_Analizador_Sintactico.tab.h 2>/dev/null
+	@rm -f $(LEX_OUTPUT) $(YACC_OUTPUT) $(YACC_HEADER) $(ANALYZER_EXECUTABLE) 2>/dev/null
+	@rm -f dist/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo dist/LAB01_Arregoces_Gonzalez_Sanchez_Oviedo.c 2>/dev/null
+	@rm -f dist/LAB02_Analizador_Sintactico dist/LAB02_Analizador_Sintactico.tab.* 2>/dev/null
+	@rm -f dist/visualizador_tokens dist/visualizador_tokens.c 2>/dev/null
 	@echo "$(GREEN)✅ Limpieza completada$(NC)"
 
 # Limpiar todo (incluyendo salidas)
@@ -235,17 +194,15 @@ help:
 	@echo "$(CYAN)╚════════════════════════════════════════════════════════════╝$(NC)"
 	@echo ""
 	@echo "$(YELLOW)📦 COMPILACIÓN:$(NC)"
-	@echo "  make build                       - Compilar todos los analizadores"
+	@echo "  make build                       - Compilar el analizador combinado"
 	@echo "  make install                     - Alias de build"
-	@echo "  make install-basic               - Compilar solo analizador léxico"
-	@echo "  make install-syntax              - Compilar solo analizador sintáctico"
-	@echo "  make install-visualizador        - Compilar solo visualizador de tokens"
+	@echo "  make install-basic               - Compilar analizador combinado (léxico + sintáctico)"
+	@echo "  make install-syntax              - Compilar analizador combinado (léxico + sintáctico)"
 	@echo ""
 	@echo "$(YELLOW)🚀 EJECUCIÓN (usar con FILE=archivo.py):$(NC)"
-	@echo "  make lexico FILE=archivo.py      - Ejecutar análisis léxico"
-	@echo "  make sintactico FILE=archivo.py  - Ejecutar análisis sintáctico"
-	@echo "  make visualizar FILE=archivo.py  - Visualizar tokens (con TABs, colores)"
-	@echo "  make completo FILE=archivo.py    - Ejecutar ambos análisis"
+	@echo "  make lexico FILE=archivo.py      - Ejecutar análisis léxico (salida combinada)"
+	@echo "  make sintactico FILE=archivo.py  - Ejecutar análisis sintáctico (salida combinada)"
+	@echo "  make completo FILE=archivo.py    - Ejecutar análisis completo"
 	@echo ""
 	@echo "$(YELLOW)🧪 PRUEBAS RÁPIDAS:$(NC)"
 	@echo "  make demo                     - Probar con archivo de ejemplo"
@@ -260,7 +217,10 @@ help:
 	@echo "$(YELLOW)❓ AYUDA:$(NC)"
 	@echo "  make help                     - Mostrar esta ayuda"
 	@echo ""
-	@echo "$(GREEN)� EJEMPLOS DE USO:$(NC)"
+	@echo "$(YELLOW)ℹ️ NOTA:$(NC)"
+	@echo "  El visualizador de tokens fue retirado junto con sus fuentes."
+	@echo ""
+	@echo "$(GREEN)* EJEMPLOS DE USO:$(NC)"
 	@echo "  $(CYAN)# Compilar y probar$(NC)"
 	@echo "  make build"
 	@echo "  make demo"
@@ -289,8 +249,8 @@ help:
 # PHONY TARGETS
 # ============================================================
 
-.PHONY: help build install install-basic install-syntax install-visualizador check-tools \
-        lexico sintactico visualizar completo \
-        run-basic run-basic-file run-syntax run-syntax-file run-all run-all-file \
+.PHONY: help build install install-basic install-syntax check-tools \
+        lexico sintactico completo \
+        run-basic run-syntax run-all \
         demo test-correcto test-errores test-all \
         clean clean-all
